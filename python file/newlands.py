@@ -141,8 +141,9 @@ ABOUT_PARAGRAPHS = [
 
 
 # ================================================================ STORAGE
-def load_json(path, default):
-    """
+
+"""
+    Assign:__AHRON__
     TASK:
         This one reads a JSON file and gives us the data inside. If the file isn't
         there yet (like the very first time we run the program) or it got messed
@@ -158,7 +159,8 @@ def load_json(path, default):
     IN THE SYSTEM:
         main() uses it to load the menu when the program starts. checkout() and
         sales_report() use it to load the saved orders.
-    """
+"""
+def load_json(path, default):
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -166,8 +168,8 @@ def load_json(path, default):
         return default
 
 
-def save_json(path, data):
     """
+    ASSING: __AHRON__
     TASK:
         Saves our data (the menu or the orders) into a JSON file. We want it safe,
         so if the program crashes while saving, the real file doesn't end up
@@ -185,6 +187,7 @@ def save_json(path, data):
         added / edited / restocked / deleted, menu reset) so the changes are still
         there the next time we open the program.
     """
+def save_json(path, data):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
@@ -193,8 +196,9 @@ def save_json(path, data):
 
 
 # ================================================================ HELPERS
-def money(value):
+
     """
+    ASSIGN: __KIM__
     TASK:
         Turns a number like 1234.5 into price text like "PHP 1,234.50" so all our
         prices look the same everywhere.
@@ -205,11 +209,13 @@ def money(value):
         Used for the "Total due" at checkout and the total revenue in the sales
         report.
     """
+def money(value):
     return f"PHP {value:,.2f}"
 
 
-def line(char="-"):
+
     """
+    ASSIGN: __JEN__
     TASK:
         Prints a divider line so the screen looks neat and organized.
     HOW:
@@ -219,11 +225,13 @@ def line(char="-"):
         Used under the table headers, in the cart and the receipt, and by title()
         for the "=====" borders.
     """
+def line(char="-"):
     print(char * WIDTH)
 
 
-def title(text):
+
     """
+    ASSIGN: __KIM__
     TASK:
         Prints a page title in the middle of two "=" lines. Every screen starts
         with this, so it feels like we changed pages.
@@ -236,14 +244,15 @@ def title(text):
         Top of the main menu, Menu page, Order page, About, Contact, Admin page and
         the receipt.
     """
+def title(text):
     print()
     line("=")
     print(text.center(WIDTH))
     line("=")
 
 
-def pause():
     """
+    ASSIGN: __JEN__
     TASK:
         Waits until the user presses Enter so they can read the screen first
         (without it, the next menu shows up right away and the text scrolls away).
@@ -254,11 +263,13 @@ def pause():
         Used at the end of the Home, About and Contact pages, after menu results,
         after each admin action, and after the receipt.
     """
+def pause():
     input("\nPress Enter to continue...")
 
 
-def ask_text(prompt, allow_blank=False):
+
     """
+    ASSIGN: __KIM__
     TASK:
         Asks the user to type some text and keeps asking until they really type
         something (unless blank is allowed). Gives back the text without extra
@@ -273,6 +284,7 @@ def ask_text(prompt, allow_blank=False):
         Used for the customer name at checkout, the search word on the Menu page,
         and the names / descriptions in the admin page.
     """
+def ask_text(prompt, allow_blank=False):
     while True:
         value = input(prompt).strip()
         if value or allow_blank:
@@ -280,8 +292,8 @@ def ask_text(prompt, allow_blank=False):
         print("  Please enter something.")
 
 
-def ask_number(prompt, kind=int, minimum=0, allow_blank=False):
     """
+    ASSIGN: __ROY__
     TASK:
         Asks for a number and keeps asking until the user types a valid one that
         is not smaller than `minimum`. Use kind=int for whole numbers (quantity)
@@ -299,6 +311,7 @@ def ask_number(prompt, kind=int, minimum=0, allow_blank=False):
         prices and stock. One function for all of them means the program doesn't
         crash when someone types letters.
     """
+def ask_number(prompt, kind=int, minimum=0, allow_blank=False):
     while True:
         raw = input(prompt).strip()
         if raw == "" and allow_blank:
@@ -314,8 +327,9 @@ def ask_number(prompt, kind=int, minimum=0, allow_blank=False):
         return value
 
 
-def find_item(menu, item_id):
+
     """
+    ASSIGN: __KIM__
     TASK:
         Looks through the menu for the item that has a certain id. Gives back the
         item (a dict), or None if there's no match.
@@ -327,14 +341,16 @@ def find_item(menu, item_id):
         Turns an id that the user typed into the real item. Ordering uses it (add
         to cart, cart total, checkout) and so do the admin edit / restock / delete.
     """
+def find_item(menu, item_id):
     for item in menu:
         if item["id"] == item_id:
             return item
     return None
 
 
-def next_id(menu):
+
     """
+    ASSIGN: __ROY__
     TASK:
         Makes a new unique id for a new menu item so no two items share an id.
     HOW:
@@ -344,12 +360,14 @@ def next_id(menu):
     IN THE SYSTEM:
         Only used by add_item() in the admin page.
     """
+def next_id(menu):
     return max((i["id"] for i in menu), default=0) + 1
 
 
 # ================================================================ MENU DATA
-def build_default_menu():
+
     """
+    ASSIGN: __AHRON__
     TASK:
         Turns the MENU_DATA table (the PDF menu) into our real menu: a list of item
         dicts, each with id, name, category, price, sizes, note and stock.
@@ -368,6 +386,7 @@ def build_default_menu():
         main() calls it the first time the program runs (no saved menu yet), and
         reset_menu() calls it to bring back the original menu.
     """
+def build_default_menu():
     menu = []
     for category in CATEGORIES:
         for name, price, *rest in MENU_DATA[category]:
@@ -401,8 +420,9 @@ def price_text(item):
     return f"{item['price']:g}"
 
 
-def print_items(items):
+
     """
+    ASSIGN: __AHRON__
     TASK:
         Shows a list of items as a neat table: ID, Item, Category, Price, Stock.
         Shows "SOLD OUT" when the stock is 0, prints the description under the row
@@ -421,6 +441,7 @@ def print_items(items):
         search results, the Home featured list, the admin views and the low stock
         report all use it.
     """
+def print_items(items):
     if not items:
         print("  No items found.")
         return
@@ -435,8 +456,8 @@ def print_items(items):
                                 initial_indent="    ", subsequent_indent="    "))
 
 
-def print_addons(category):
     """
+    ASSIGN: __AHRON__
     TASK:
         Prints the add-ons of one category, like the bottom of each page of the
         printed menu: "Add-ons: Extra Rice +25, Extra Egg +20". For Hot drinks it
@@ -451,6 +472,7 @@ def print_addons(category):
         Called by print_grouped_menu() and by "Browse a category" in menu_page(),
         so customers can see the add-on prices before they order.
     """
+def print_addons(category):
     addons = ADDONS.get(category, {})
     if addons:
         print("  Add-ons: " + ", ".join(f"{n} +{p}" for n, p in addons.items()))
@@ -458,8 +480,8 @@ def print_addons(category):
         print(f"  Sizes: price is shown as {' / '.join(SIZES)}")
 
 
-def print_grouped_menu(menu):
     """
+    ASSIGN: __AHRON__
     TASK:
         Prints the whole menu section by section ("MEAL COLLECTIONS", "ICED
         COLLECTIONS", ...) with each section's add-ons, so it looks like the
@@ -475,6 +497,7 @@ def print_grouped_menu(menu):
         Menu page option 1, the start of the Order page (and its "Show menu"
         option), and "View all items" in the admin page.
     """
+def print_grouped_menu(menu):
     for category in CATEGORIES:
         items = [i for i in menu if i["category"] == category]
         if items:
@@ -483,8 +506,8 @@ def print_grouped_menu(menu):
             print_items(items)
 
 
-def ask_choice(prompt, options):
     """
+    ASSIGN: __AHRON__
     TASK:
         Shows a numbered list of options and keeps asking until the user picks a
         valid number. Gives back the option that was chosen.
@@ -499,6 +522,7 @@ def ask_choice(prompt, options):
         Used to pick a category (Menu page and add_item) and to pick a size
         (pick_size).
     """
+def ask_choice(prompt, options):
     for number, option in enumerate(options, start=1):
         print(f"  {number}. {option}")
     while True:
@@ -509,8 +533,9 @@ def ask_choice(prompt, options):
 
 
 # ================================================================ PAGES
-def home_page(menu):
+
     """
+    ASSIGN: __ROY__
     TASK:
         The Home page: welcomes the customer, says what Newland's is, and shows one
         available item from each category as "Featured today".
@@ -523,6 +548,7 @@ def home_page(menu):
     IN THE SYSTEM:
         Main menu option 1. It's like the home page of our website.
     """
+def home_page(menu):
     title(f"WELCOME TO {SHOP_NAME.upper()}")
     print("A school-based coffee shop run by student baristas.")
     print("Every cup helps a student learn.")
@@ -536,8 +562,8 @@ def home_page(menu):
     pause()
 
 
-def menu_page(menu):
     """
+    ASSING: __AHRON__
     TASK:
         The customer's Menu page, with a small sub-menu: see the whole menu, browse
         one category, or search by name. Option 0 goes back to the main menu.
@@ -557,6 +583,7 @@ def menu_page(menu):
         Main menu option 2. This is the Menu page of the website: customers only
         look at items and prices here. Nothing is bought and nothing is saved.
     """
+def menu_page(menu):
     while True:
         title("OUR MENU")
         print("1. Whole menu\n2. Browse a category\n3. Search by name\n0. Back")
@@ -579,8 +606,8 @@ def menu_page(menu):
         pause()
 
 
-def about_page():
     """
+    ASSIGN: __ROY__
     TASK:
         The About page: tells the story of Newland's (the text is from the PDF).
     HOW:
@@ -593,6 +620,7 @@ def about_page():
         Main menu option 4. It is only text, no data is read or saved. To change
         the story, edit ABOUT_PARAGRAPHS at the top of the file.
     """
+def about_page():
     title("ABOUT NEWLAND'S")
     for paragraph in ABOUT_PARAGRAPHS:
         print(textwrap.fill(paragraph, WIDTH))
@@ -600,8 +628,8 @@ def about_page():
     pause()
 
 
-def contact_page():
     """
+    ASSIGN: __JEN__
     TASK:
         The Contact page: address, phone, and how to follow the shop.
     HOW:
@@ -612,6 +640,7 @@ def contact_page():
     IN THE SYSTEM:
         Main menu option 5. Like the "Contact us" page of a website.
     """
+def contact_page():
     title("CONTACT US")
     print(f"Address : {CONTACT_ADDRESS}")
     print(f"Phone   : {CONTACT_PHONE}")
@@ -624,8 +653,9 @@ def contact_page():
 #   {"item_id": 38, "size": "12oz", "addons": ["Espresso"], "qty": 2}
 # (size is "" for items without sizes, addons is [] when there are none.)
 
-def unit_price(item, size, addons):
+
     """
+    ASSIGN: __AHRON__
     TASK:
         Price of ONE serving: the base price (for Hot drinks, the price of the
         chosen size) plus the price of every add-on that was picked.
@@ -639,13 +669,14 @@ def unit_price(item, size, addons):
         Used for the cart lines, the cart total and the receipt, so the same price
         is used everywhere.
     """
+def unit_price(item, size, addons):
     base = item["sizes"][size] if item["sizes"] else item["price"]
     prices = ADDONS.get(item["category"], {})
     return base + sum(prices[name] for name in addons)
 
 
-def line_label(item, size, addons):
     """
+    ASSIGN: __AHRON__
     TASK:
         Makes the text of one cart line, like "Latte (12oz) + Espresso" or
         "Tocilog + Extra Rice, Extra Egg".
@@ -657,6 +688,7 @@ def line_label(item, size, addons):
         Used in the cart display, the saved order and the receipt, so the customer
         sees exactly what they ordered.
     """
+def line_label(item, size, addons):
     label = item["name"]
     if size:
         label += f" ({size})"
@@ -665,8 +697,8 @@ def line_label(item, size, addons):
     return label
 
 
-def qty_in_cart(cart, item_id):
     """
+    ASSIGN: __AHRON__
     TASK:
         Counts how many servings of one menu item are already in the cart, counting
         ALL its lines (the same drink can be in the cart in two sizes).
@@ -677,11 +709,12 @@ def qty_in_cart(cart, item_id):
         Used by add_to_cart() for the stock check, so a customer can't order more
         than what we have.
     """
+def qty_in_cart(cart, item_id):
     return sum(l["qty"] for l in cart if l["item_id"] == item_id)
 
 
-def cart_total(menu, cart):
     """
+    ASSIGN: __AHRON__
     TASK:
         Total price of the whole cart.
     HOW:
@@ -691,12 +724,14 @@ def cart_total(menu, cart):
         Shown at the bottom of the cart, and used at checkout to know how much to
         charge and how much the change is.
     """
+def cart_total(menu, cart):
     return sum(unit_price(find_item(menu, l["item_id"]), l["size"], l["addons"])
                * l["qty"] for l in cart)
 
 
-def show_cart(menu, cart):
+
     """
+    ASSIGN: __ROY__
     TASK:
         Prints the cart with line numbers (so the customer can remove a line), the
         amount of each line, and the grand total. Shows "(empty)" when there's
@@ -712,6 +747,7 @@ def show_cart(menu, cart):
         The Order page shows it every time before the options, so the customer
         always sees what is in their order so far.
     """
+def show_cart(menu, cart):
     print("\nYOUR CART")
     line()
     if not cart:
@@ -726,8 +762,8 @@ def show_cart(menu, cart):
     print(f"  TOTAL{cart_total(menu, cart):>{WIDTH - 7}.2f}")
 
 
-def print_receipt(order):
     """
+    ASSIGN: __AHRON__
     TASK:
         Prints the receipt of a finished order: order number, date, customer, every
         line, then total, amount paid and change.
@@ -743,6 +779,7 @@ def print_receipt(order):
         Called by checkout() right after the order is saved. It is the last thing
         the customer sees when they order.
     """
+def print_receipt(order):
     title(f"{SHOP_NAME.upper()} - RECEIPT")
     print(f"Order #{order['order_no']:04d}    {order['date']}")
     print(f"Customer: {order['customer']}")
@@ -757,8 +794,8 @@ def print_receipt(order):
     print("\nThank you for supporting our student baristas!")
 
 
-def checkout(menu, cart):
     """
+    ASSIGN: __ROY__
     TASK:
         Finishes an order: takes the payment, subtracts the sold quantities from
         stock, saves the order history and prints the receipt. Gives back True if
@@ -783,6 +820,7 @@ def checkout(menu, cart):
         the stock in the menu file and adds a new record to the orders file, which
         the sales report reads later.
     """
+def checkout(menu, cart):
     if not cart:
         print("  Your cart is empty.")
         return False
@@ -819,8 +857,8 @@ def checkout(menu, cart):
     return True
 
 
-def pick_size(item):
     """
+    ASSIGN: __AHRON__
     TASK:
         For Hot drinks, asks which size the customer wants (8oz or 12oz). Items
         without sizes need no question, so it gives back "".
@@ -832,13 +870,14 @@ def pick_size(item):
         Called by add_to_cart(). The size the customer picks decides the price in
         unit_price().
     """
+def pick_size(item):
     if not item["sizes"]:
         return ""
     return ask_choice("Size number: ", list(item["sizes"]))
 
 
-def pick_addons(item):
     """
+    ASSIGN: __AHRON__
     TASK:
         Asks which add-ons the customer wants, using the add-ons of the item's
         category (see ADDONS). Gives back a list of add-on names ([] for none).
@@ -860,6 +899,7 @@ def pick_addons(item):
         Called by add_to_cart(). The add-ons picked here are added to the price in
         unit_price() and shown in the cart and receipt.
     """
+def pick_addons(item):
     available = ADDONS.get(item["category"], {})
     if not available:
         return []
@@ -876,8 +916,8 @@ def pick_addons(item):
         print("  Please type numbers from the list, like 1,2.")
 
 
-def add_to_cart(menu, cart):
     """
+    ASSIGN: __AHRON__
     TASK:
         Adds one line to the cart: item, size (if any), add-ons and quantity. The
         cart must never hold more of an item than we have in stock.
@@ -895,6 +935,7 @@ def add_to_cart(menu, cart):
         Order page option 1. It is where the customer builds their order. Stock is
         only checked here and NOT lowered yet - that happens in checkout().
     """
+def add_to_cart(menu, cart):
     item = find_item(menu, ask_number("Item ID: ", int, 1))
     if not item or item["stock"] == 0:
         print("  That item is not available.")
@@ -910,8 +951,8 @@ def add_to_cart(menu, cart):
     print("  Added to cart.")
 
 
-def remove_from_cart(cart):
     """
+    ASSIGN: __AHRON__
     TASK:
         Removes one line from the cart, chosen by its line number.
     HOW:
@@ -924,6 +965,7 @@ def remove_from_cart(cart):
         Order page option 2. It is for when the customer changes their mind before
         paying.
     """
+def remove_from_cart(cart):
     if not cart:
         print("  Your cart is empty.")
         return
@@ -935,8 +977,8 @@ def remove_from_cart(cart):
     print("  Removed.")
 
 
-def order_page(menu):
     """
+    ASSIGN: __ROY__
     TASK:
         The ordering system. The customer builds a cart (add / remove lines), can
         look at the menu again, then checks out.
@@ -955,6 +997,7 @@ def order_page(menu):
         lives while the customer is ordering. Stock and sales history change only
         when checkout() finishes.
     """
+def order_page(menu):
     cart = []
     title("PLACE AN ORDER")
     print_grouped_menu(menu)
@@ -979,8 +1022,9 @@ def order_page(menu):
 
 
 # ================================================================ ADMIN
-def add_item(menu):
+
     """
+    ASSIGN: __AHRON__
     TASK:
         Adds a brand-new item to the menu with a starting stock. Two items must not
         have the same name.
@@ -999,6 +1043,7 @@ def add_item(menu):
         Admin option 2. The new item shows up right away on the Menu and Order
         pages because all the pages share the same `menu` list.
     """
+def add_item(menu):
     name = ask_text("Name: ")
     if any(i["name"].lower() == name.lower() for i in menu):
         print("  That item already exists.")
@@ -1019,8 +1064,8 @@ def add_item(menu):
     print("  Item added.")
 
 
-def edit_item(menu):
     """
+    ASSIGN: __AHRON__
     TASK:
         Changes an existing item's name, price (or prices, for Hot drinks) or
         description. Pressing Enter on a question keeps the old value.
@@ -1040,6 +1085,7 @@ def edit_item(menu):
         Admin option 3. Use it when a price on the menu changes or there's a typo
         in a name. Customers see the new details immediately.
     """
+def edit_item(menu):
     item = find_item(menu, ask_number("Item ID to edit: ", int, 1))
     if not item:
         print("  Item not found.")
@@ -1062,8 +1108,8 @@ def edit_item(menu):
     print("  Item updated.")
 
 
-def restock_item(menu):
     """
+    ASSIGN: __AHRON__
     TASK:
         Stock tracking: adds newly delivered stock to an item (like 20 more Tocilog
         portions are ready).
@@ -1077,6 +1123,7 @@ def restock_item(menu):
         Admin option 4. Stock goes DOWN in checkout() and goes UP here, so together
         they keep the numbers correct.
     """
+def restock_item(menu):
     item = find_item(menu, ask_number("Item ID to restock: ", int, 1))
     if not item:
         print("  Item not found.")
@@ -1087,8 +1134,8 @@ def restock_item(menu):
     print(f"  {item['name']} stock is now {item['stock']}.")
 
 
-def delete_item(menu):
     """
+    ASSIGN: __AHRON__
     TASK:
         Removes an item from the menu, but only after the admin confirms, so
         nothing gets deleted by accident.
@@ -1102,6 +1149,7 @@ def delete_item(menu):
         Admin option 5. For items the shop doesn't sell anymore. Old orders keep
         their item names, so the sales report still works.
     """
+def delete_item(menu):
     item = find_item(menu, ask_number("Item ID to delete: ", int, 1))
     if not item:
         print("  Item not found.")
@@ -1112,8 +1160,8 @@ def delete_item(menu):
         print("  Item deleted.")
 
 
-def reset_menu(menu):
     """
+    ASSIGN: __AHRON__
     TASK:
         Puts the menu back to the original Newland's menu from the PDF (every stock
         goes back to DEFAULT_STOCK). Useful if the data gets messy while we test.
@@ -1127,6 +1175,7 @@ def reset_menu(menu):
         Admin option 8. Mostly for testing, or for starting a new day with fresh
         stock. It does not delete the saved orders.
     """
+def reset_menu(menu):
     answer = input("Reset the whole menu and all stock? (y/n): ").strip().lower()
     if answer == "y":
         menu[:] = build_default_menu()
@@ -1134,8 +1183,8 @@ def reset_menu(menu):
         print("  Menu reset to the original Newland's menu.")
 
 
-def low_stock_report(menu):
     """
+    ASSIGN: __ROY__
     TASK:
         Shows the items that are sold out or running low, so the admin knows what to
         restock. "Low" means LOW_STOCK (5) or fewer.
@@ -1146,12 +1195,13 @@ def low_stock_report(menu):
     IN THE SYSTEM:
         Admin option 6. It helps the admin decide what to restock with option 4.
     """
+def low_stock_report(menu):
     print(f"\nItems with {LOW_STOCK} or fewer in stock:")
     print_items([i for i in menu if i["stock"] <= LOW_STOCK])
 
 
-def sales_report():
     """
+    ASSIGN: __ROY__
     TASK:
         Summarizes the sales: number of orders, total revenue and the top 3
         best-selling items.
@@ -1167,6 +1217,7 @@ def sales_report():
         Admin option 7. It reads the orders that checkout() saved, so it only shows
         something after at least one order is finished.
     """
+def sales_report():
     orders = load_json(ORDERS_FILE, [])
     if not orders:
         print("  No orders yet.")
@@ -1182,8 +1233,8 @@ def sales_report():
         print(f"  {name}: {qty} sold")
 
 
-def admin_page(menu):
     """
+    ASSIGN: __AHRON__
     TASK:
         The menu-management console. It is protected by a PIN and lets the admin
         view, add, edit, restock and delete items, reset the menu and see the
@@ -1205,6 +1256,7 @@ def admin_page(menu):
         Main menu option 6. This is the Manage page of the website. Only the staff
         should get in, which is why we ask for the PIN first.
     """
+def admin_page(menu):
     for _ in range(3):
         if input("Admin PIN: ").strip() == ADMIN_PIN:
             break
@@ -1240,8 +1292,8 @@ def admin_page(menu):
 
 
 # ================================================================ MAIN
-def main():
     """
+    ASSIGN: __AHRON__
     TASK:
         Starts the program: loads the menu (or builds the Newland's menu on the very
         first run) and keeps showing the main menu until the user exits.
@@ -1259,6 +1311,7 @@ def main():
         other function is reached from here, so it works like the navigation bar
         of our website.
     """
+def main():
     menu = load_json(MENU_FILE, None)
     if menu is None:
         menu = build_default_menu()
