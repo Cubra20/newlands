@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu · Newland’s Café</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-<img src="images/logo.png" alt="Newlands Cafe Logo" width="200">
-    <h1>Newlands Cafe</h1>
-    <p>Welcome to Newlands Cafe!</p>
-    <nav>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>    
-    <section>
-        <h2>Menu</h2>
-        <p>Check out our delicious menu!</p>
-    </section>
-    <menu>
-        <ul>
-            <li>Espresso - $3.00</li>
-            <li>Cappuccino - $4.00</li>
-            <li>Latte - $4.50</li>
-            <li>Mocha - $5.00</li>
-            <li>Pastries - $2.50</li>
-        </ul>
-    </menu>
-    <section>
-        <h2>Specials</h2>
-        <p>Don't miss our daily specials!</p>
-    </section>
-    <menu>
-        <ul>
-            <li>Soup of the Day - $6.00</li>
-            <li>Sandwich of the Day - $7.50</li>
-            <li>Salad of the Day - $8.00</li>
-        </ul>
-    </menu>
-    <footer>
-        <p>&copy; 2024 Newlands Cafe. All rights reserved.</p>  
-    </footer>
+<body data-page="menu">
+<header class="nav solid" id="nav">
+  <a class="brand" href="index.html"><img src="images/logo.png.png" alt="">
+    <span>NEWLANDS</span>
+  </a>
+  <nav class="links">
+    <a href="index.html">Home</a>
+    <a href="menu.html" class="on">Menu</a>
+    <a href="story.html">Our Story</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+  <button class="orderbtn" data-act="drawer">My Order <b id="count">0</b></button>
+</header>
+
+<main>
+<section id="menu">
+    <div class="mhead"><div>
+      <p class="eyebrow gold">Our Menu</p>
+      <h2>Favourites</h2>
+    </div>
+      <button class="pill out" id="fullbtn" data-act="full">View Full Menu</button>
+    </div>
+    <div class="car"><button class="arr" data-act="prev" aria-label="Previous">←</button>
+      <div id="items" class="track"></div>
+      <button class="arr" data-act="next" aria-label="Next">→</button>
+    </div>
+    <p class="note" id="catnote"></p>
+    <div class="cats" id="tabs"></div>
+  </section>
+</main>
+
+<footer class="sitefoot">Newland’s Café · Sisters of Mary School · <a href="manage.html">Staff: Manage</a></footer>
+
+<dialog id="dlg">
+  <form method="dialog">
+    <h3 id="dt"></h3>
+    <div id="db"></div>
+  <div class="acts">
+    <button value="x" class="ghost">Cancel</button>
+    <button value="ok" class="pill dark">Add to order</button>
+  </div>
+</form>
+</dialog>
+<script src="script.js"></script>
 </body>
 </html>

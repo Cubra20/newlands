@@ -21,6 +21,7 @@ Quick glossary used in the comments:
     loop      = code that repeats (`while True` repeats until we `break`/`return`).
 """
 
+import json
 import os
 from collections import Counter
 from datetime import datetime
@@ -36,14 +37,14 @@ ORDERS_FILE = os.path.join(DATA_DIR, "orders.json")
 
 
 DEFAULT_MENU = [
-    {"id": 1, "name": "Espresso", "category": "Coffee", "price": 80.0, "stock": 30},
-    {"id": 2, "name": "Americano", "category": "Coffee", "price": 95.0, "stock": 30},
-    {"id": 3, "name": "Caffe Latte", "category": "Coffee", "price": 120.0, "stock": 25},
+    {"id": 1, "name": "Espresso", "category": "Coffee", "price": 80.0, "stock": 20},
+    {"id": 2, "name": "Americano", "category": "Coffee", "price": 95.0, "stock": 20},
+    {"id": 3, "name": "Caffe Latte", "category": "Coffee", "price": 120.0, "stock": 20},
     {"id": 4, "name": "Caramel Macchiato", "category": "Coffee", "price": 140.0, "stock": 20},
-    {"id": 5, "name": "Iced Matcha", "category": "Non-Coffee", "price": 130.0, "stock": 15},
-    {"id": 6, "name": "Hot Chocolate", "category": "Non-Coffee", "price": 110.0, "stock": 15},
-    {"id": 7, "name": "Butter Croissant", "category": "Pastry", "price": 75.0, "stock": 12},
-    {"id": 8, "name": "Blueberry Muffin", "category": "Pastry", "price": 85.0, "stock": 10},
+    {"id": 5, "name": "Iced Matcha", "category": "Non-Coffee", "price": 130.0, "stock": 20},
+    {"id": 6, "name": "Hot Chocolate", "category": "Non-Coffee", "price": 110.0, "stock": 20},
+    {"id": 7, "name": "Butter Croissant", "category": "Pastry", "price": 75.0, "stock": 20},
+    {"id": 8, "name": "Blueberry Muffin", "category": "Pastry", "price": 85.0, "stock": 20},
 ]
 
 
@@ -90,20 +91,23 @@ def save_json(path, data):
     """
 
 # ---------------------------------------------------------------- helpers
-#3
+#3 DONE
 def money(value):
-    
+    value = 1234.5
+    price_text = f"PHP {value:,.2f}" 
+
 """
-    ASSIGN:____KIM_____
+  ASSIGN:____KIM_____
     TASK:
         Turn a number like 1234.5 into a price text like "PHP 1,234.50".
     HOW:
         Use an f-string with a format code: f"PHP {value:,.2f}"
         (`,` adds thousands commas, `.2f` always shows 2 decimal places).
-    """
+"""
 
 #4
-#def line():
+def line(char = "-" ):
+    print(char * WIDTH)
 """
     ASSIGN:___JEN______
     TASK:
@@ -113,8 +117,12 @@ def money(value):
         Example: "-" * 5 gives "-----".
     """
 
-#5
-#def title():
+#5 pending
+def title():
+    print()
+    print("=")
+    print(text.center(WIDTH))
+    print("=")    
 """
     ASSIGN:____KIM______
     TASK:
@@ -127,7 +135,8 @@ def money(value):
     """
 
 #6
-#def pause():
+def pause():
+    input("...")
 """
     ASSIGN:____JEN______
     TASK:
@@ -137,8 +146,14 @@ def money(value):
         Call input("...") and ignore what it returns. The program waits there.
     """
 
-#7
-#def ask_text():
+#7 DONE
+def ask_text():
+    while True:
+        value = input(prompt).strip()
+
+        if value or allow_blank:
+            return value
+        print("Please enter something")            
 """
     ASSIGN:_____KIM_____
     TASK:
@@ -152,8 +167,25 @@ def money(value):
         4. Otherwise print a friendly message; the loop asks again.
     """
 
-#8-DONE
-#def ask_number():
+#8 - DONE
+def ask_number(prompt, kind=int, minimum=0, allow_blank=False):
+    while True:
+        raw = input(prompt).strip()
+
+        if raw == "" and allow_blank:
+            return None
+
+        try:
+            value = kind(raw)
+        except ValueError:
+            print("Invalid number, please try again.")
+            continue
+
+        if value < minimum:
+            print(f"Number must be at least {minimum}.")
+            continue
+
+        return value
 """
     ASSIGN:____ROY______
     TASK:
@@ -171,8 +203,14 @@ def money(value):
         5. Otherwise `return value`.
     """
 
-#9
-#def find_item():
+#9 DONE
+def find_item(menu, item_id):
+    for item in menu:
+        if item["id"] == item_id:
+           return item 
+
+    return None
+    
 """
     ASSIGN:____KIM______
     TASK:
@@ -183,8 +221,9 @@ def money(value):
         2. If `item["id"] == item_id`, `return item` right away.
         3. After the loop ends with no match, `return None`.
     """
-#10
-#def next_id():
+#10 - DONE
+def next_id():
+    return max((i["id"] for i in menu), default=0) + 1
 """
     ASSIGN:_____ROY_____
     TASK:
@@ -195,7 +234,16 @@ def money(value):
         `default=0` handles an empty menu so the first item gets id 1.
     """
 #11
-#def print_items():
+def print_items():
+    if not items:
+        print("No items found." )
+        return 
+    print(f"{'ID':<4}{'Item':<24}{'Category':<12}{'Price':>10}{'Stock':>8} ")
+    line(char = "-")
+    for it in items: 
+        print()
+    
+        
 """
     ASSIGN:_____JEN_____
     TASK:
@@ -204,16 +252,25 @@ def money(value):
         If the list is empty, print "No items found."
     HOW:
         1. `if not items:` print the "No items found." message and `return`.
-        2. Print a header row using f-string widths: `{'Item':<24}` means
+        2. Print a header row using f-string widths: `(f"{'ID':<4}{'Item':<24}{'Category':<12}{'Price':>10}{'Stock':>8}` means
            "left-align in 24 spaces", `{'Price':>10}` means "right-align in 10".
         3. Call line() for a divider.
         4. `for it in items:` build `stock` text ("SOLD OUT" if it["stock"] == 0,
            else str(it["stock"])) and print one row with the same widths.
-    """
+"""
 
 #12
 # ---------------------------------------------------------------- pages
-#def home_page():
+def home_page():
+    title("WELCOME")
+    print("Welcome to our shop! We're happy to see you.")
+    print("Opening hours: Mon-Sat 7:00 AM - 7:00 PM, Sun 8:00 AM - 4:00 PM")
+
+    picks = [i for i in menu if i["stock"] > 0][:3]
+
+    print("\nToday's picks:")
+    print_items(picks)
+    pause()
 """
     ASSIGN:____ROY______
     TASK:
@@ -271,7 +328,11 @@ def menu_page(menu):
     """
 
 #14
-#def about_page():
+def about_page():
+    title("ABOUT US")
+    print("About Newlands")
+    print("Newlands started with one espresso machine and a short menu. We still keep it short: a handful of coffees, a few cold drinks, and pastries that arrive each morning.")
+    print("")
 """
     ASSIGN:_____ROY_____
     TASK:
@@ -284,7 +345,13 @@ def menu_page(menu):
     """
 
 #15
-#def contact_page():
+def contact_page():
+    title("CONTACT US")
+    print("Sisters of Mary - Adlas, Campus, Brgy. Adlas, Silang, 4118 Cavite")
+    print("(000) 123-4567")
+    print("hello@newlandsexample")
+    print("Mon to Sat 7am to 7pm, Sun 8am to 4pm")
+
 """
     ASSIGN:____JEN______
     TASK:
@@ -323,7 +390,7 @@ def menu_page(menu):
     """
 
 #18 - DONE
-def print_receipt():
+def print_receipt(receipt):
     title(f"{SHOP_NAME.upper()} - RECEIPT")
     print(f"Order #{order['order_no']:04d}    {order['date']}")
     print(f"Customer: {order['customer']}")
@@ -400,8 +467,8 @@ def print_receipt():
 
 
 # ---------------------------------------------------------------- admin
-#21
-def add_item():
+#21 - DONE
+def add_item(menu):
     name = ask_text("Name: ")
     if any(i["name"].lower() == name.lower() for i in menu):
         print("  That item already exists.")
@@ -428,7 +495,7 @@ def add_item():
     """
 
 #22 - DONE
-def edit_item():
+def edit_item(menu):
     item = find_item(menu, ask_number("Item ID to edit: ", int, 1))
     if not item:
         print("  Item not found.")
@@ -458,7 +525,7 @@ def edit_item():
     """
 
 #23 - DONE
-def restock_item():
+def restock_item(menu):
     item = find_item(menu, ask_number("Item ID to restock: ", int, 1))
     if not item:
         print("  Item not found.")
@@ -525,7 +592,7 @@ def restock_item():
     """
 
 #27 - DONE
-def admin_page():
+def admin_page(menu):
     for _ in range(3):
         if input("Admin PIN: ").strip() == ADMIN_PIN:
             break
@@ -581,7 +648,7 @@ def admin_page():
 # ---------------------------------------------------------------- main
 #28 - DONE
 def main():
-menu = load_json(MENU_FILE, None)
+    menu = load_json(MENU_FILE, None)
     if menu is None:
         menu = DEFAULT_MENU
         save_json(MENU_FILE, menu)

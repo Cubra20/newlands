@@ -1,0 +1,479 @@
+[
+  {
+    "id": 1,
+    "name": "Soy Garlic Chicken",
+    "category": "Meal",
+    "price": 159.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 2,
+    "name": "Breaded Porkchop",
+    "category": "Meal",
+    "price": 179.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 3,
+    "name": "Boneless Bangus",
+    "category": "Meal",
+    "price": 169.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 4,
+    "name": "Tocilog",
+    "category": "Meal",
+    "price": 149.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 5,
+    "name": "Hotsilog",
+    "category": "Meal",
+    "price": 139.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 6,
+    "name": "Longsilog",
+    "category": "Meal",
+    "price": 149.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 7,
+    "name": "Corned Beef Silog",
+    "category": "Meal",
+    "price": 149.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 8,
+    "name": "Fried Pork Belly",
+    "category": "Meal",
+    "price": 179.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 9,
+    "name": "Fried Pork Chop",
+    "category": "Meal",
+    "price": 179.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 10,
+    "name": "Iced Americano",
+    "category": "Iced",
+    "price": 80.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 11,
+    "name": "Iced Spanish Latte",
+    "category": "Iced",
+    "price": 125.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 12,
+    "name": "Iced Caramel Macchiato",
+    "category": "Iced",
+    "price": 125.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 13,
+    "name": "Iced Cappuccino",
+    "category": "Iced",
+    "price": 125.0,
+    "sizes": {},
+    "note": "",
+    "stock": 5
+  },
+  {
+    "id": 14,
+    "name": "Iced Vanilla Latte",
+    "category": "Iced",
+    "price": 125.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 15,
+    "name": "Iced Hazelnut Latte",
+    "category": "Iced",
+    "price": 125.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 16,
+    "name": "Iced Mocha Latte",
+    "category": "Iced",
+    "price": 125.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 17,
+    "name": "Iced Salted Caramel Latte",
+    "category": "Iced",
+    "price": 125.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 18,
+    "name": "Iced Strawberry Matcha",
+    "category": "Iced",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 19,
+    "name": "Iced Matcha Latte",
+    "category": "Iced",
+    "price": 125.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 20,
+    "name": "Iced Chocolate Latte",
+    "category": "Iced",
+    "price": 125.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 21,
+    "name": "Strawberry Frappe",
+    "category": "Frappe",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 22,
+    "name": "Blueberry Frappe",
+    "category": "Frappe",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 23,
+    "name": "Matcha Frappe",
+    "category": "Frappe",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 24,
+    "name": "Mocha Frappe",
+    "category": "Frappe",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 25,
+    "name": "Caramel / Salted Frappe",
+    "category": "Frappe",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 26,
+    "name": "Coffee Jelly Frappe",
+    "category": "Frappe",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 27,
+    "name": "Java Chip Frappe",
+    "category": "Frappe",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 28,
+    "name": "Cookies and Cream Frappe",
+    "category": "Frappe",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 29,
+    "name": "Green Apple Frappe",
+    "category": "Frappe",
+    "price": 150.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 30,
+    "name": "Strawberry Fizz",
+    "category": "Fizz",
+    "price": 120.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 31,
+    "name": "Blueberry Fizz",
+    "category": "Fizz",
+    "price": 120.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 32,
+    "name": "Green Apple Fizz",
+    "category": "Fizz",
+    "price": 120.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 33,
+    "name": "Mango Fizz",
+    "category": "Fizz",
+    "price": 120.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 34,
+    "name": "Blue Curacao Fizz",
+    "category": "Fizz",
+    "price": 120.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 35,
+    "name": "Lemon Fizz",
+    "category": "Fizz",
+    "price": 120.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 36,
+    "name": "Passion Fruit Fizz",
+    "category": "Fizz",
+    "price": 120.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 37,
+    "name": "Sparkling Americano Fizz",
+    "category": "Fizz",
+    "price": 120.0,
+    "sizes": {},
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 38,
+    "name": "Latte",
+    "category": "Hot",
+    "price": 80.0,
+    "sizes": {
+      "8oz": 80.0,
+      "12oz": 100.0
+    },
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 39,
+    "name": "Americano",
+    "category": "Hot",
+    "price": 60.0,
+    "sizes": {
+      "8oz": 60.0,
+      "12oz": 80.0
+    },
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 40,
+    "name": "Matcha Latte",
+    "category": "Hot",
+    "price": 100.0,
+    "sizes": {
+      "8oz": 100.0,
+      "12oz": 120.0
+    },
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 41,
+    "name": "Cappuccino",
+    "category": "Hot",
+    "price": 80.0,
+    "sizes": {
+      "8oz": 80.0,
+      "12oz": 100.0
+    },
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 42,
+    "name": "Spanish Latte",
+    "category": "Hot",
+    "price": 100.0,
+    "sizes": {
+      "8oz": 100.0,
+      "12oz": 120.0
+    },
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 43,
+    "name": "Chocolate Latte",
+    "category": "Hot",
+    "price": 100.0,
+    "sizes": {
+      "8oz": 100.0,
+      "12oz": 120.0
+    },
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 44,
+    "name": "Caramel Macchiato",
+    "category": "Hot",
+    "price": 100.0,
+    "sizes": {
+      "8oz": 100.0,
+      "12oz": 120.0
+    },
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 45,
+    "name": "Vanilla Latte",
+    "category": "Hot",
+    "price": 100.0,
+    "sizes": {
+      "8oz": 100.0,
+      "12oz": 120.0
+    },
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 46,
+    "name": "Herbal Tea",
+    "category": "Hot",
+    "price": 50.0,
+    "sizes": {
+      "8oz": 50.0,
+      "12oz": 70.0
+    },
+    "note": "",
+    "stock": 20
+  },
+  {
+    "id": 47,
+    "name": "French Press",
+    "category": "Brewed",
+    "price": 120.0,
+    "sizes": {},
+    "note": "A rich, full-bodied coffee with deep aromas and a velvety mouthfeel.",
+    "stock": 20
+  },
+  {
+    "id": 48,
+    "name": "Chemex Pour Over",
+    "category": "Brewed",
+    "price": 150.0,
+    "sizes": {},
+    "note": "A clean, well-balanced cup with delicate flavor notes and a refreshing aroma.",
+    "stock": 20
+  },
+  {
+    "id": 49,
+    "name": "Siphon Brewer",
+    "category": "Brewed",
+    "price": 200.0,
+    "sizes": {},
+    "note": "An aromatic, refined cup with a silky texture and complex layers of flavor.",
+    "stock": 20
+  },
+  {
+    "id": 50,
+    "name": "V60 Dripper",
+    "category": "Brewed",
+    "price": 150.0,
+    "sizes": {},
+    "note": "A pour-over that highlights the coffee's natural sweetness, acidity, and origin.",
+    "stock": 20
+  }
+]

@@ -1,28 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us · Newland’s Café</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-<img src="images/logo.png" alt="Newlands Cafe Logo" width="200">
-    <h1>Newlands Cafe</h1>
-    <p>Welcome to Newlands Cafe!</p>
-    <nav>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>  
-    <section>
-        <h2>Contact Us</h2>
-        <p>If you have any questions or feedback, please reach out to us at <a href="mailto:info@newlandscafe.com">info@newlandscafe.com</a>.</p>
-    </section>
-    <footer>
-        <p>&copy; 2024 Newlands Cafe. All rights reserved.</p>  
-    </footer>
+<body data-page="contact">
+<header class="nav solid" id="nav">
+  <a class="brand" href="index.html"><img src="images/logo.png.png" alt=""><span>NEWLANDS</span></a>
+  <nav class="links"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Our Story</a><a href="contact.html" class="on">Contact Us</a></nav>
+  <button class="orderbtn" data-act="drawer">My Order <b id="count">0</b></button>
+</header>
+
+<main>
+<section id="contact">
+    <h2>Contact Us</h2>
+    <div class="detail">
+        <form id="cform">
+          <label for="cn">Your name</label>
+          <input id="cn" required maxlength="40">
+          <label for="ce">Email</label>
+          <input id="ce" type="email" required>
+          <label for="cm">Message</label>
+          <textarea id="cm" rows="4" required maxlength="400"></textarea>
+          <p><button class="pill gold">Send message</button></p>
+        </form>
+        
+      <div class="cinfo">
+        <p>
+          <b>Hours</b>
+          <br>Monday - Friday: 4:40 PM - 5:30 PM
+          <br>Saturday - Sunday: 10:00 AM - 5:30 PM
+        </p>
+        <p>
+          <b>Find Us</b>
+          <br>Sisters of Mary School Adlas, Inc.
+          <br>Brgy. Adlas, Silang, Cavite
+        </p>
+        <p><b>Phone</b><br>+63 917 123 4567</p>
+        <p><b>Email</b>
+          <br>
+          <a href="mailto:newlandscafe@gmail.com">newlandscafe@gmail.com</a>
+        </p> 
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="sitefoot">Newland’s Café · Sisters of Mary School · <a href="manage.html">Staff: Manage</a></footer>
+<script src="script.js"></script>
 </body>
 </html>

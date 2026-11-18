@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manage · Newland’s Café</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="manage">
+<header class="nav solid" id="nav">
+  <a class="brand" href="index.html"><img src="images/logo.png.png" alt=""><span>NEWLANDS</span></a>
+  <nav class="links"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Our Story</a><a href="contact.html">Contact Us</a></nav>
+  <button class="orderbtn" data-act="drawer">My Order <b id="count">0</b></button>
+</header>
+
+<section id="gate" hidden>
+  <form id="gform" class="gatecard" autocomplete="off">
+    <p class="eyebrow gold">Newland’s Café</p>
+    <h2>Staff only</h2>
+    <p>Enter the PIN to open Manage.</p>
+    <label for="gpin">PIN</label>
+    <input id="gpin" class="pin" type="password" inputmode="numeric" maxlength="12" required autocomplete="off">
+    <p class="err" id="gerr" role="alert"></p>
+    <p><button class="pill dark wide">Unlock</button></p>
+    <p><a href="index.html">Back to Home</a></p>
+  </form>
+</section>
+
+<main id="manage" hidden>
+  <div class="mwrap">
+    <p class="eyebrow gold">Staff only</p>
+    <h2>Manage</h2>
+    <div class="mstats" id="stats"></div>
+    <p><button class="ghost" data-act="lock">Lock</button> 
+      <button class="ghost" data-act="reset">Reset all data</button></p>
+    <div class="mtabs" id="mtabs" role="tablist">
+      <button role="tab" data-act="tab" data-v="orders" class="on">Orders <b id="tc-orders"></b></button>
+      <button role="tab" data-act="tab" data-v="menu">Menu and Stocks</button>
+      <button role="tab" data-act="tab" data-v="msgs">Messages <b id="tc-msgs"></b></button>
+    </div>
+    <section class="panel" id="tab-orders"><div id="orders"></div></section>
+    <section class="panel" id="tab-menu" hidden>
+      <p><button class="pill dark" data-act="newitem">+ Add a menu item</button></p>
+      <p><small>Item pictures come from your images folder: images/&lt;group folder&gt;/&lt;item name&gt;.jpg. Use Edit to type a different file name. The shop logo shows when no picture is found.</small></p>
+      <div class="search"><input id="mq" type="search" placeholder="Search items…" aria-label="Search items" autocomplete="off"></div>
+      <div class="wrap"><table><thead><tr><th>Photo</th><th>Item</th><th>Category</th><th>Price</th><th>Stock</th><th></th></tr></thead><tbody id="inv"></tbody></table></div>
+    </section>
+    <section class="panel" id="tab-msgs" hidden><div id="msgs"></div></section>
+  </div>
+</main>
+
+
+<dialog id="ndlg">
+  <form id="addform">
+    <h3 id="ntitle">Add a menu item</h3>
+  <div class="prev">
+    <img id="pimg" src="images/logo.png.png" alt="Item picture preview">
+    <div>
+      <label for="pf">Picture file name (optional)</label>
+      <input id="pf" placeholder="e.g. iced matcha.jpg" maxlength="80">
+      <small id="pathhint"></small>
+    </div>
+  </div>
+  <label for="an">Name</label>
+  <input id="an" required maxlength="40">
+  <label for="ac">Category</label>
+  <select id="ac"></select>
+  <label for="ap" id="aplab">Price (₱)</label>
+  <input id="ap" type="number" min="1" required>
+  <label for="as">Starting stock</label>
+  <input id="as" type="number" min="0" value="20" required>
+  <div class="acts">
+    <button type="button" class="ghost" data-act="closen">Cancel</button>
+    <button class="pill dark" id="nsave">Save item</button>
+  </div>
+</form>
+</dialog>
+<script src="script.js"></script>
+</body>
+</html>
