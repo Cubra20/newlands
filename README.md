@@ -98,13 +98,20 @@ Everything (menu, stock, orders, messages and My Order) is saved in the **browse
 - No real database, so no sharing of orders between different computers
 - No online payment, it only records the order
 
-## What I learned
-
-- How to make a website with many pages that share the same CSS and JavaScript
-- Using `localStorage` to save data without a database
+## What We learned
+Ahron
+- Using `localStorage` to save data thru json file, without a real database
 - Making the page with JavaScript (building HTML from data, buttons, pop-up dialogs)
 - Organizing the code, removing repeated code and writing comments
-- Using Git and GitHub
+- Using GitHub to collab with a team
+Roy
+-
+
+Kim
+-
+
+Jen
+-
 
 ## Credits
 
