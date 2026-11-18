@@ -357,51 +357,7 @@ dialog::backdrop{
    7. HOME PAGE (index.html)
    The hero uses images/hero.jpg.jpg; the colored layer on top keeps the text readable.
    ========================================================================== */
-.hero{
-    position:relative;
-    padding:8rem 2rem 3rem 6vw;
-    color:#fff;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    justify-content:center;
-    background:linear-gradient(90deg,rgba(226,128,36,.92),rgba(150,80,30,.55) 45%,rgba(30,18,10,.25)), url(images/hero.jpg.jpg) center/cover,#5a3414;
-    min-height:100vh;
-}
-.hero h1{
-    font-size:clamp(3.8rem,11vw,8rem);
-    line-height:.9;
-    margin:.1em 0 .25em;
-}
-.hero .or{
-    display:block;
-    color:var(--or);
-}
-.lead{
-    font-family:var(--mono);
-    max-width:30rem;
-    margin:0 0 1.6rem;
-}
-.hstats{
-    display:flex;
-    gap:2.5rem;
-    flex-wrap:wrap;
-    margin-top:2.5rem;
-    font-family:var(--serif);
-}
-.hstats b{
-    display:block;
-    font-weight:400;
-    font-size:2.6rem;
-    line-height:1;
-}
 
-/* phone size */
-@media(max-width:760px){
-    .hero{
-        padding:9rem 1.2rem 3rem;
-    }
-}
 
 /* ==========================================================================
    8. MENU PAGE (menu.html)
@@ -611,63 +567,12 @@ dialog::backdrop{
    9. STORY PAGE (story.html)
    The story uses images/story.jpg.jpg with a dark layer on top.
    ========================================================================== */
-#story{
-    min-height:90vh;
-    padding:7rem 6vw;
-    color:#fff;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    background:linear-gradient(rgba(25,15,8,.6),rgba(25,15,8,.6)), url(images/story.jpg.jpg) center/cover,#3a2412;
-}
-#story .text{
-    max-width:100%;
-    font:clamp(1.15rem,2.2vw,1.6rem)/1.35 var(--serif);
-    text-align:justify;
-}
-#story .text p{
-    margin:0 0 .8rem;
-}
 
-/* phone size */
-@media(max-width:760px){
-    #story{
-        padding:6rem 1.2rem;
-    }
-}
 
 /* ==========================================================================
    10. CONTACT PAGE (contact.html)
    ========================================================================== */
-#contact{
-    background:var(--dark);
-    color:#fff;
-    min-height:100vh;
-    padding:8rem 6vw 3rem;
-}
-#contact h2{
-    font-size:2.8rem;
-    margin-bottom:1.5rem;
-}
-#contact .detail{
-    display:flex;
-    flex-wrap:wrap;
-    gap:5rem;
-}
-#contact form{
-    width:100%;
-    max-width:800px;
-}
-#contact input,#contact textarea{
-    background:rgba(255,255,255,.08);
-    border-color:rgba(255,255,255,.35);
-    color:#fff;
-}
-#contact input:focus,#contact textarea:focus{
-    background:rgba(255,255,255,.15);
-    border-color:rgba(255,255,255,.55);
-    color:#fff;
-}
+
 
 /* ==========================================================================
    11. MANAGE PAGE (manage.html)
