@@ -2,7 +2,7 @@
 
 Hi! This is our school project: a website for **Newland’s Café**, a school-based coffee shop run by the student baristas of the Sisters of Mary School. Customers can look at the menu and make an order, and the staff can manage the orders, the menu and the stock.
 
-I made it using only **HTML, CSS and JavaScript**. No Python, no framework and no database. It was my first time making a whole website with many pages, so I tried to keep the code simple and I added comments in the code so my teammates can understand it.
+We made it using only **HTML, CSS and JavaScript**. No Python, no framework and no database. It was our first time making a whole website with many pages, so We tried to keep the code simple and we added comments in the code so our team can understand it.
 
 <!-- Add a screenshot here, for example: ![Home page](screenshot-home.png) -->
 
@@ -97,6 +97,8 @@ Everything (menu, stock, orders, messages and My Order) is saved in the **browse
 - The PIN is only simple protection. It is written inside `script.js`, so anyone who opens that file (or the browser developer tools) can read it. Good enough for a school project, not for a real shop
 - No real database, so no sharing of orders between different computers
 - No online payment, it only records the order
+
+## Team Contributions
 
 ## What We learned
 Ahron
