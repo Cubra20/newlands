@@ -6,7 +6,7 @@ The menu, prices and About text come from the Newland's menu PDF.
 It has the same parts as our website idea: Home, Menu, Order (sizes + add-ons),
 About us, Contact us, and Menu Management (admin) with stock tracking.
 
-Run:   python newlands.py
+Run:   python newlands.py (make sure the file directory is correct).
 Admin PIN: 1234  for default PIN
 Our data is saved as JSON files in the ./data folder.
 
@@ -52,8 +52,8 @@ MENU_FILE = os.path.join(DATA_DIR, "newlands_menu.json")
 ORDERS_FILE = os.path.join(DATA_DIR, "newlands_orders.json")
 
 # Contact info for the Contact page.
-CONTACT_ADDRESS = "(add the school address here)"
-CONTACT_PHONE = "(add the phone number here)"
+CONTACT_ADDRESS = "Sisters of Mary School - Adlas, Inc. Brgy. Adlas, Silang, Cavite"
+CONTACT_PHONE = "+6391-2345-67890"
 
 # Order of the sections.
 CATEGORIES = ["Meal", "Iced", "Frappe", "Fizz", "Hot", "Brewed"]

@@ -6,6 +6,8 @@ We made it using only HTML, CSS and JavaScript. No Python, no framework and no d
 
 
 ## What the system can do
+--- The System has Two paced Python for console input logs only, HTML CSS AND JAVASCRIPT for the Interface of the System. ---
+--- But the Two paced has the same functionality and purposed. ---
 
 --For customers--
 - See the menu by category: Hot, Iced, Frappe, Fizz, Brewed and Meals
