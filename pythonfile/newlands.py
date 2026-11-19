@@ -6,7 +6,7 @@ The menu, prices and About text come from the Newland's menu PDF.
 It has the same parts as our website idea: Home, Menu, Order (sizes + add-ons),
 About us, Contact us, and Menu Management (admin) with stock tracking.
 
-Run:   python newlands.py (make sure the file directory is correct).
+Run:   python newlands.py --(MAKE THE FILE DIRECTORY CORRECT)--.
 Admin PIN: 1234  for default PIN
 Our data is saved as JSON files in the ./data folder.
 

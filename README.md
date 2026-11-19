@@ -108,13 +108,13 @@ AHRON
 - Using GitHub to collab with a team
 
 ROY
--
+-  
 
 KIM
--
+-  
 
 JEN
--
+-  
 
 
 ## Credits
@@ -125,4 +125,4 @@ JEN
     JEN
     ROY
     KIM
-    AHRON
+    AHRON KHYLE MEDIAVILLO
