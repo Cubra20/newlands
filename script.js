@@ -15,7 +15,7 @@
    HOW = a simple way to do it
    IN THE SYSTEM = where the function is used and why we need it
 
-   TABLE OF CONTENTS
+   WHAT'S ON THERE
    1. SHARED        helpers, settings, menu data, saved data, pictures, My Order drawer, buttons
    2. HOME PAGE     index.html
    3. MENU PAGE     menu.html
@@ -28,7 +28,6 @@
 
 /* ==========================================================================
    1. SHARED (used by every page)
-   Careful when changing this part: all 5 pages use it, so a mistake here can break every page!
    ========================================================================== */
 
 /* ---- 1.1 Small helpers: tiny functions we use everywhere so we don't repeat long code ---- */
@@ -305,7 +304,6 @@ on('#q', 'input', renderMenu);
 
 /* ==========================================================================
    4. STORY PAGE (story.html): text only, nothing to program here
-   (The page still gets the top bar and My Order drawer from the shared part above.)
    ========================================================================== */
 
 
@@ -407,23 +405,16 @@ function renderOrders() {
    IN THE SYSTEM: the Menu and Stocks tab. This is how the staff control the stock and the menu. */
 function renderInventory() {
   const rows = S.items.filter(i => matches(i, $('#mq').value));   // only the items that match the search box above the table
-  $('#inv').innerHTML = rows.map(i => `<tr><td>${picTag(i, 'th')}</td><td>${esc(i.name)}</td><td>${CATS[i.cat].label}</td>
-    <td><input type="number" min="1" data-f="price" data-id="${i.id}" value="${i.p[0]}" aria-label="Price of ${esc(i.name)}"></td>
-    <td><input type="number" min="0" data-f="stock" data-id="${i.id}" value="${i.stock}" aria-label="Stock of ${esc(i.name)}"></td>
-    <td><button class="ghost" data-act="edit" data-id="${i.id}">Edit</button> <button class="ghost" data-act="del" data-id="${i.id}">Remove</button></td></tr>`).join('') || '<tr><td colspan="6">No items match your search.</td></tr>';
+  $('#inv').innerHTML = rows.map(i => `<tr><td>${picTag(i, 'th')}
+  </td>
+  <td>${esc(i.name)}</td>
+  <td>${CATS[i.cat].label}</td>
+   <td>₱${i.p[0]}.00</td>
+    <td>₱${i.stock}.00</td>
+    <td><button class="ghost" data-act="edit" data-id="${i.id}">Edit</button> 
+    <button class="ghost" data-act="del" data-id="${i.id}">Remove</button></td></tr>`).join('') || 
+    '<tr><td colspan="6">No items match your search.</td></tr>';
 }
-
-/* TASK: Change the stock or the price directly in the table.
-   HOW: Read the typed number and put it on the item. For hot drinks the 12oz price keeps the same gap from the 8oz price. Then commit().
-   IN THE SYSTEM: this is how the staff restock an item or fix a price without opening the Edit window. */
-function editField(el) {
-  const it = item(+el.dataset.id), v = Math.max(0, parseInt(el.value, 10) || 0);
-  if (el.dataset.f === 'stock') it.stock = v;
-  else if (v > 0) { const gap = it.p.length > 1 ? it.p[1] - it.p[0] : 0; it.p = it.p.length > 1 ? [v, v + gap] : [v]; }
-  commit();
-}
-// When a price/stock box in the table changes (those boxes have data-f), send it to editField().
-document.addEventListener('change', e => { if (e.target.dataset.f) editField(e.target); });
 
 /* TASK: Search box above the table: show only the matching items while typing.
    HOW: The "input" event happens on every key press, so we draw the table again. renderInventory() reads the box.
@@ -491,10 +482,10 @@ Object.assign(acts, {
   newitem: () => openModal('Add a menu item', 'Save item'),
   edit: b => openModal('Edit menu item', 'Save changes', item(+b.dataset.id)),
   closen: () => $('#ndlg').close(),
-  del: b => { const it = item(+b.dataset.id); if (!confirm('Remove ' + it.name + ' from the menu?')) return; S.items = S.items.filter(i => i !== it); cart = cart.filter(l => l.id !== it.id); commit(); },
+  del: b => { const it = item(+b.dataset.id); if (!confirm('Remove ' + it.name + ' from the menu?')) return; S.items = S.items.filter(i => i !== it); cart = cart.filter(l => l.id !== it.id); commit(); toast('Item removed'); },
 });
 
-/* TASK: Decide if the Manage page can open.
+/* TASK: Decide if the Manage page can open. 
    HOW: Fill the category list of the Add/Edit window first. If this tab is already unlocked, open Manage; if not, show the PIN form.
    IN THE SYSTEM: runs at START, but only on manage.html. */
 function initManage() {
@@ -505,7 +496,11 @@ function initManage() {
 
 /* ==========================================================================
    7. START (runs once when any page opens)
-   Steps: 1) add the shared parts, 2) load the saved cart, 3) draw the page, 4) run the setup of the page we are on.
+   Steps: 
+   1) add the shared parts, 
+   2) load the saved cart, 
+   3) draw the page, 
+   4) run the setup of the page we are on.
    Leaving Manage forgets the unlock, so every visit to Manage asks for the PIN.
    This part is at the END of the file on purpose: the functions and data above must be ready first.
    ========================================================================== */

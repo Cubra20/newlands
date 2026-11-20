@@ -44,7 +44,7 @@ from datetime import datetime
 
 SHOP_NAME = "Newland's"
 ADMIN_PIN = "1234"
-LOW_STOCK = 5          # "low stock" means this many or fewer left
+LOW_STOCK = 5          # "low stock"
 DEFAULT_STOCK = 20     # default stock for new items
 WIDTH = 62
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
