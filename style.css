@@ -611,30 +611,38 @@ dialog::backdrop{
    9. STORY PAGE (story.html)
    The story uses images/story.jpg.jpg with a dark layer on top.
    ========================================================================== */
-#story{
-    min-height:90vh;
-    padding:7rem 6vw;
-    color:#fff;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    background:linear-gradient(rgba(25,15,8,.6),rgba(25,15,8,.6)), url(images/story.jpg.jpg) center/cover,#3a2412;
-}
-#story .text{
-    max-width:100%;
-    font:clamp(1.15rem,2.2vw,1.6rem)/1.35 var(--serif);
-    text-align:justify;
-}
-#story .text p{
-    margin:0 0 .8rem;
+.our-story-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 110px 50px 50px 50px;
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('images/story.jpg.jpg') center/cover no-repeat;
+  color: white;
+  box-sizing: border-box;
 }
 
-/* phone size */
-@media(max-width:760px){
-    #story{
-        padding:6rem 1.2rem;
-    }
+.story-title {
+  margin: 0 0 80px -0;
+  font-family:var(--serif);
+  font-size: 40px;
+  font-weight: normal;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #d4a359;
 }
+.story-content {
+    align-content: center;
+  max-width: 70%;
+  max-height: 100%;
+  font:var(--serif);
+  margin: left 20px;
+}
+.content{
+font-size: x-large;
+}
+
+
+
+
 
 /* ==========================================================================
    10. CONTACT PAGE (contact.html)
