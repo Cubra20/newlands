@@ -30,5 +30,21 @@
     "total": 375.0,
     "paid": 400.0,
     "change": 25.0
+  },
+  {
+    "order_no": 3,
+    "date": "2026-11-21 03:11",
+    "customer": "elsie",
+    "items": [
+      {
+        "name": "Iced Americano",
+        "label": "Iced Americano + Espresso",
+        "qty": 1,
+        "price": 120.0
+      }
+    ],
+    "total": 120.0,
+    "paid": 150.0,
+    "change": 30.0
   }
 ]
