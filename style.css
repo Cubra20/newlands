@@ -357,52 +357,57 @@ dialog::backdrop{
    7. HOME PAGE (index.html)
    The hero uses images/hero.jpg.jpg; the colored layer on top keeps the text readable.
    ========================================================================== */
-.hero{
-    position:relative;
-    padding:8rem 2rem 3rem 6vw;
-    color:#fff;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    justify-content:center;
-    background:linear-gradient(90deg,rgba(226,128,36,.92),rgba(150,80,30,.55) 45%,rgba(30,18,10,.25)), url(images/hero.jpg.jpg) center/cover,#5a3414;
-    min-height:100vh;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+   .hero {
+  min-height: 100vh;
+  padding: 140px 80px 40px;
+  color: white;
+
+  background:
+    linear-gradient(90deg, rgba(255, 106, 19, 0.6), transparent 60%),
+    url("images/hero.jpg.jpg");
+  background-size: cover;       /* fill the whole section */
+  background-position: center;  /* keep the middle of the photo visible */
+  background-repeat: no-repeat; /* don't tile the image */
 }
-.hero h1{
-    font-size:clamp(3.8rem,11vw,8rem);
-    line-height:.9;
-    margin:.1em 0 .25em;
+.coffee {
+  font-size: clamp(48px, 7vw, 96px);
+  color: var(--or);
+  line-height: 1;
+  margin: 0.5rem 0;
 }
-.hero .or{
-    display:block;
-    color:var(--or);
+.coffee2 {
+  font-size: clamp(48px, 7vw, 96px);
+  color: var(--white);
+  line-height: 1;
+  margin: 0.5rem 0;
 }
-.lead{
-    font-family:var(--mono);
-    max-width:30rem;
-    margin:0 0 1.6rem;
+.description {
+  font-size: clamp(18px, 2.5vw, 24px);
+  max-width: 600px;
+  margin-bottom: 1.5rem;
 }
-.hstats{
-    display:flex;
-    gap:2.5rem;
-    flex-wrap:wrap;
-    margin-top:2.5rem;
-    font-family:var(--serif);
-}
-.hstats b{
-    display:block;
-    font-weight:400;
-    font-size:2.6rem;
-    line-height:1;
+.specialty {
+  font-size: clamp(12px, 2.5vw, 18px);
+  color: var(--white);
+  margin-bottom: 1rem;
 }
 
-/* phone size */
-@media(max-width:760px){
-    .hero{
-        padding:9rem 1.2rem 3rem;
-    }
+.hero h1 {
+  font-size: clamp(48px, 9vw, 96px);
 }
-
+.btn {
+  padding: 14px 28px;
+  font-size: 15px;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;          /* pill shape */
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;               /* remove underline for links */
+}
 /* ==========================================================================
    8. MENU PAGE (menu.html)
    Carousel of tall picture cards, then the category bar.
