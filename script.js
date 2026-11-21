@@ -410,7 +410,7 @@ function renderInventory() {
   <td>${esc(i.name)}</td>
   <td>${CATS[i.cat].label}</td>
    <td>₱${i.p[0]}.00</td>
-    <td>₱${i.stock}.00</td>
+    <td>${i.stock}</td>
     <td><button class="ghost" data-act="edit" data-id="${i.id}">Edit</button> 
     <button class="ghost" data-act="del" data-id="${i.id}">Remove</button></td></tr>`).join('') || 
     '<tr><td colspan="6">No items match your search.</td></tr>';
