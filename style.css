@@ -14,6 +14,8 @@
     --dark:#4a2808;
     --or:#ff6a13;
     --ink:#2b1a10;
+    --black:#000000;
+    --white: #ffffff;
     --line:#c4b8a5;
     --warn:#a63a2a;
     --serif:"Instrument Serif",Georgia,serif;
@@ -371,36 +373,37 @@ dialog::backdrop{
   background-repeat: no-repeat; /* don't tile the image */
 }
 .coffee {
-  font-size: clamp(48px, 7vw, 96px);
+  font-size: 15vh;
   color: var(--or);
   line-height: 1;
   margin: 0.5rem 0;
 }
 .coffee2 {
-  font-size: clamp(48px, 7vw, 96px);
+  font-size: 15vh;
   color: var(--white);
   line-height: 1;
   margin: 0.5rem 0;
 }
 .description {
-  font-size: clamp(18px, 2.5vw, 24px);
-  max-width: 600px;
-  margin-bottom: 1.5rem;
+  font-size: 3vh;
+  max-width: 70%;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  text-align: justify;
+  font-family: var(--serif);
 }
 .specialty {
-  font-size: clamp(12px, 2.5vw, 18px);
+  font-size: 2vh;
   color: var(--white);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
-.hero h1 {
-  font-size: clamp(48px, 9vw, 96px);
-}
 .btn {
-  padding: 14px 28px;
-  font-size: 15px;
+  min-height: 20%;          /* 7% of the window height */
+  padding: 2vh;       /* left/right space, also based on height */
+  font-size: 2vh;  
   color: var(--white);
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(57, 56, 55, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 999px;          /* pill shape */
   backdrop-filter: blur(6px);
@@ -408,6 +411,21 @@ dialog::backdrop{
   transition: background 0.2s;
   text-decoration: none;               /* remove underline for links */
 }
+.mstats2{
+    display:flex;
+    gap: 6vh;
+    flex-wrap:wrap;
+    margin:1rem 0 1.5rem;
+    font-family:var(--mono);
+    font-size: 4vh;
+    margin-top: 80px;
+}
+.mstats2 b{
+    display:block;
+    font:6vh/1 var(--serif);
+    color:var(--white);
+}
+
 /* ==========================================================================
    8. MENU PAGE (menu.html)
    Carousel of tall picture cards, then the category bar.
@@ -674,6 +692,99 @@ dialog::backdrop{
     color:#fff;
 }
 
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--brown);
+  color: var(--black);
+}
+
+/* ---------- Two-column layout ---------- */
+.contact-us {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 150px;
+  padding: 60px 25px;
+  color: var(--white);
+}
+
+/* ---------- Left side ---------- */
+.contact-form h1 { 
+    font-size: 36px; 
+    margin-bottom: 14px; 
+    font-size: 4vh;
+    margin-top: 2.5vh;
+    color: var(--white);
+}
+
+.intro { 
+    font-size: 2vh;
+    color: var(--white); 
+    line-height: 1.7; 
+    margin-bottom: 24px; }
+
+form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  background: white;
+  border: 1px solid var(--white);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+form textarea { resize: vertical; }
+
+form input:focus,
+form textarea:focus {
+  outline: 2px solid var(--or);
+  border-color: transparent;
+}
+
+.send-btn {
+  padding: 2vh 2vh;
+  background: var(--dark);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.send-btn:hover { opacity: 0.85; }
+
+/* ---------- Right side ---------- */
+.contact-info h3 { 
+    font-size: 16px; 
+    margin-bottom: 6px; 
+    margin-top: 5vh;
+}
+
+.contact-info p {
+  color: var(--white);
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+/* ---------- Small screens: one column ---------- */
+@media (max-width: 800px) {
+  .contact-us {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+}
 /* ==========================================================================
    11. MANAGE PAGE (manage.html)
    Order: PIN screen, page frame, number stats, tabs, orders, table, item modal preview.
