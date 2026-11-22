@@ -14,6 +14,8 @@
     --dark:#4a2808;
     --or:#ff6a13;
     --ink:#2b1a10;
+    --black:#000000;
+    --white: #ffffff;
     --line:#c4b8a5;
     --warn:#a63a2a;
     --serif:"Instrument Serif",Georgia,serif;
@@ -388,35 +390,51 @@ dialog::backdrop{
 /*==========================================================================
    6. SHARED: Loader and Page animation
    ========================================================================== */
-/*Page animation*/
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero{
+    position:relative;
+    padding:8rem 2rem 3rem 6vw;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    background:linear-gradient(90deg,rgba(226,128,36,.92),rgba(150,80,30,.55) 45%,rgba(30,18,10,.25)), url(images/hero.jpg.jpg) center/cover,#5a3414;
+    min-height:100vh;
+}
+.hero h1{
+    font-size:clamp(3.8rem,11vw,8rem);
+    line-height:.9;
+    margin:.1em 0 .25em;
+}
+.hero .or{
+    display:block;
+    color:var(--or);
+}
+.lead{
+    font-family:var(--mono);
+    max-width:30rem;
+    margin:0 0 1.6rem;
+}
+.hstats{
+    display:flex;
+    gap:2.5rem;
+    flex-wrap:wrap;
+    margin-top:2.5rem;
+    font-family:var(--serif);
+}
+.hstats b{
+    display:block;
+    font-weight:400;
+    font-size:2.6rem;
+    line-height:1;
 }
 
-@keyframes ScaleIn {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(5);
-  }
+/* phone size */
+@media(max-width:760px){
+    .hero{
+        padding:9rem 1.2rem 3rem;
+    }
 }
-/* ==========================================================================
-   - SHARED: Scroll-to-top button
-   ========================================================================== */
-
-/* ==========================================================================
-   - HOME PAGE (index.html)
-   Use images/hero.jpg.jpg; the colored layer on top keeps the text readable.
-   ========================================================================== */
-
 
 /* ==========================================================================
    - MENU PAGE (menu.html)
@@ -643,6 +661,99 @@ dialog::backdrop{
    ========================================================================== */
 
 
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--brown);
+  color: var(--black);
+}
+
+/* ---------- Two-column layout ---------- */
+.contact-us {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 150px;
+  padding: 60px 25px;
+  color: var(--white);
+}
+
+/* ---------- Left side ---------- */
+.contact-form h1 { 
+    font-size: 36px; 
+    margin-bottom: 14px; 
+    font-size: 4vh;
+    margin-top: 2.5vh;
+    color: var(--white);
+}
+
+.intro { 
+    font-size: 2vh;
+    color: var(--white); 
+    line-height: 1.7; 
+    margin-bottom: 24px; }
+
+form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  background: white;
+  border: 1px solid var(--white);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+form textarea { resize: vertical; }
+
+form input:focus,
+form textarea:focus {
+  outline: 2px solid var(--or);
+  border-color: transparent;
+}
+
+.send-btn {
+  padding: 2vh 2vh;
+  background: var(--dark);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.send-btn:hover { opacity: 0.85; }
+
+/* ---------- Right side ---------- */
+.contact-info h3 { 
+    font-size: 16px; 
+    margin-bottom: 6px; 
+    margin-top: 5vh;
+}
+
+.contact-info p {
+  color: var(--white);
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+/* ---------- Small screens: one column ---------- */
+@media (max-width: 800px) {
+  .contact-us {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+}
 /* ==========================================================================
    - MANAGE PAGE (manage.html)
    Order: PIN screen, page frame, number stats, tabs, orders, table, item modal preview.
