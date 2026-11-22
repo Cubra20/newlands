@@ -247,7 +247,7 @@ def line(char="-"):
 def title(text):
     print()
     line("=")
-    print(text.center(WIDTH))
+    print(f"{text.center(WIDTH)}")
     line("=")
 
 
@@ -535,34 +535,6 @@ def ask_choice(prompt, options):
 # ================================================================ PAGES
 
     """
-    ASSIGN: __ROY__
-    TASK:
-        The Home page: welcomes the customer, says what Newland's is, and shows one
-        available item from each category as "Featured today".
-    HOW:
-        1. title(...) with a welcome message, then print a short intro.
-        2. Make `featured = []`. Loop over CATEGORIES; for each one, make the list
-           of items in that category that have stock above 0, and if the list is
-           not empty `append` its first item (`[0]`).
-        3. print_items(featured), then pause().
-    IN THE SYSTEM:
-        Main menu option 1. It's like the home page of our website.
-    """
-def home_page(menu):
-    title(f"WELCOME TO {SHOP_NAME.upper()}")
-    print("A school-based coffee shop run by student baristas.")
-    print("Every cup helps a student learn.")
-    print("\nFeatured today:")
-    featured = []
-    for category in CATEGORIES:
-        available = [i for i in menu if i["category"] == category and i["stock"] > 0]
-        if available:
-            featured.append(available[0])
-    print_items(featured)
-    pause()
-
-
-    """
     ASSING: __AHRON__
     TASK:
         The customer's Menu page, with a small sub-menu: see the whole menu, browse
@@ -586,7 +558,7 @@ def home_page(menu):
 def menu_page(menu):
     while True:
         title("OUR MENU")
-        print("1. Whole menu\n2. Browse a category\n3. Search by name\n0. Back")
+        print("1. Whole menu\n2. Browse a category\n3. Search by name\n4. Order\n0. Back")
         choice = input("Choose: ").strip()
         if choice == "1":
             print_grouped_menu(menu)
@@ -598,6 +570,8 @@ def menu_page(menu):
         elif choice == "3":
             term = ask_text("Search: ").lower()
             print_items([i for i in menu if term in i["name"].lower()])
+        elif choice == "4":
+            orderPage_menu(menu)
         elif choice == "0":
             return
         else:
@@ -644,7 +618,6 @@ def contact_page():
     title("CONTACT US")
     print(f"Address : {CONTACT_ADDRESS}")
     print(f"Phone   : {CONTACT_PHONE}")
-    print("Follow us: scan the QR code on our printed menu.")
     pause()
 
 
@@ -917,6 +890,36 @@ def pick_addons(item):
 
 
     """
+    TASK:
+        If two cart lines are exactly the same (same item, same size, same
+        add-ons), combine them into one line and add their quantities. Without
+        this, ordering the same drink twice would show up as 2 lines.
+    HOW:
+        1. Start a new empty list `merged = []`.
+        2. For every line in the cart, look through `merged` for a line with the
+           same item_id, size and addons. If we find one, add the qty to it and
+           `break`.
+        3. The `else:` of the inner `for` runs only when there was NO break (no
+           match), so then we append the line as a new one.
+        4. `cart[:] = merged` replaces the CONTENTS of the same list, so
+           order_page() still sees the updated cart.
+    IN THE SYSTEM:
+        Called by add_to_cart() and change_options() to keep the cart short and
+        neat. The total price stays the same, only the lines change.
+    """
+def merge_same_lines(cart):
+    merged = []
+    for entry in cart:
+        for m in merged:
+            if (m["item_id"], m["size"], m["addons"]) == \
+                    (entry["item_id"], entry["size"], entry["addons"]):
+                m["qty"] += entry["qty"]
+                break
+        else:
+            merged.append(entry)
+    cart[:] = merged
+    
+    """
     ASSIGN: __AHRON__
     TASK:
         Adds one line to the cart: item, size (if any), add-ons and quantity. The
@@ -950,31 +953,190 @@ def add_to_cart(menu, cart):
     cart.append({"item_id": item["id"], "size": size, "addons": addons, "qty": qty})
     print("  Added to cart.")
 
+    """
+    TASK:
+        Asks the customer for ONE cart line number (the numbers shown by
+        show_cart) and keeps asking until it is a real line. Pressing Enter
+        cancels and gives back None.
+    HOW:
+        1. `while True:` and read the number with ask_number(..., int, 1, True).
+           The last True lets the customer press Enter to cancel.
+        2. If it is None, `return None`.
+        3. If it is not bigger than `len(cart)`, `return number`.
+        4. Otherwise print "Please choose a line from 1 to N." and ask again.
+    IN THE SYSTEM:
+        Used by change_quantity() and change_options() so both ask for the line
+        the same way.
+    """
+def ask_line_number(cart, prompt):
+    while True:
+        number = ask_number(prompt + " (Enter to cancel): ", int, 1, True)
+        if number is None:
+            return None
+        if number <= len(cart):
+            return number
+        print(f"  Please choose a line from 1 to {len(cart)}.")
+
 
     """
-    ASSIGN: __AHRON__
     TASK:
-        Removes one line from the cart, chosen by its line number.
+        Asks for ONE OR MORE cart line numbers, like "2" or "1,3", so the
+        customer can pick several lines at once. Gives back a sorted list of
+        numbers ([] if the customer cancels).
+    HOW:
+        1. `while True:` and read `raw = input(...)`. An empty answer means
+           cancel, so `return []`.
+        2. Remove the spaces and split on commas (same trick as pick_addons()).
+        3. If EVERY part is a digit from 1 up to len(cart), return
+           `sorted({int(p) for p in parts})` (a set removes duplicates).
+        4. Otherwise print a hint and ask again.
+    IN THE SYSTEM:
+        Used by delete_from_cart() so the customer can delete many items in one go.
+    """
+def ask_line_numbers(cart, prompt):
+    while True:
+        raw = input(prompt + " (like 2 or 1,3, Enter to cancel): ").strip()
+        if raw == "":
+            return []
+        parts = [p for p in raw.replace(" ", "").split(",") if p]
+        if parts and all(p.isdigit() and 1 <= int(p) <= len(cart) for p in parts):
+            return sorted({int(p) for p in parts})
+        print(f"  Please type line numbers from 1 to {len(cart)}, like 1,3.")
+
+
+    """
+    TASK:
+        Lets the customer change the quantity of one cart line: add more or
+        reduce it. The new quantity can't be more than the stock we have.
+    HOW:
+        1. Ask which line with ask_line_number(). If None, `return`.
+        2. Get the line `entry = cart[number - 1]` and its item with find_item().
+        3. Work out how many we can still sell: the same item may be in other
+           lines too, so `others = qty_in_cart(...) - entry["qty"]` and
+           `room = item["stock"] - others`.
+        4. Ask the new quantity with ask_number(..., int, 1). If it is bigger than
+           `room`, print how many are available and `return`.
+        5. Otherwise save it: `entry["qty"] = new_qty`.
+    IN THE SYSTEM:
+        Edit cart option 1. It is the "add quantity" part of editing, and it
+        uses the same stock rule as add_to_cart() so we never oversell.
+    """
+def change_quantity(menu, cart):
+    number = ask_line_number(cart, "Which line number?")
+    if number is None:
+        return
+    entry = cart[number - 1]
+    item = find_item(menu, entry["item_id"])
+    others = qty_in_cart(cart, item["id"]) - entry["qty"]
+    room = item["stock"] - others
+    print(f"  Now: {entry['qty']} x {line_label(item, entry['size'], entry['addons'])}"
+          f"  (up to {room} available)")
+    new_qty = ask_number("New quantity: ", int, 1)
+    if new_qty > room:
+        print(f"  Sorry, only {room} available.")
+        return
+    entry["qty"] = new_qty
+    print("  Quantity updated.")
+
+
+
+    """
+    TASK:
+        Lets the customer change the size and the add-ons of one cart line
+        (for example 8oz to 12oz, or add an Espresso shot).
+    HOW:
+        1. Ask which line with ask_line_number(). If None, `return`.
+        2. Find its item. If the item has no sizes AND its category has no
+           add-ons (like Brewed), print a message and `return`.
+        3. Show what the line is now with line_label().
+        4. Ask again with pick_size(item) and pick_addons(item) and save them in
+           the line. The add-ons you pick REPLACE the old ones, and pressing
+           Enter means no add-ons.
+        5. Call merge_same_lines(cart) in case the line now matches another one.
+    IN THE SYSTEM:
+        Edit cart option 2. The price updates by itself because show_cart() and
+        cart_total() always use unit_price() with the line's current size and
+        add-ons.
+    """
+def change_options(menu, cart):
+    number = ask_line_number(cart, "Which line number?")
+    if number is None:
+        return
+    entry = cart[number - 1]
+    item = find_item(menu, entry["item_id"])
+    if not item["sizes"] and not ADDONS.get(item["category"]):
+        print("  This item has no sizes or add-ons to change.")
+        return
+    print(f"  Now: {line_label(item, entry['size'], entry['addons'])}")
+    entry["size"] = pick_size(item)
+    entry["addons"] = pick_addons(item)
+    merge_same_lines(cart)
+    print("  Item updated.")
+
+    """
+    TASK:
+        Deletes the chosen line(s) from the cart. The customer can type one line
+        number or several, like "1,3".
+    HOW:
+        1. Ask with ask_line_numbers(cart, ...). If the answer is empty, `return`.
+        2. Delete from the BIGGEST number to the smallest:
+           `for n in reversed(numbers): cart.pop(n - 1)`. If we deleted line 1
+           first, the other lines would move up and we'd delete the wrong ones!
+        3. Print how many lines were deleted.
+    IN THE SYSTEM:
+        Edit cart option 3. It is for when the customer changes their mind before
+        paying. Nothing is saved to the files until checkout().
+    """
+def delete_from_cart(cart):
+    numbers = ask_line_numbers(cart, "Line number(s) to delete")
+    if not numbers:
+        return
+    for n in reversed(numbers):
+        cart.pop(n - 1)
+    print(f"  Deleted {len(numbers)} line(s).")
+
+
+    """
+    TASK:
+        The "Edit cart" screen. From here the customer can change a quantity,
+        change the size / add-ons, or delete items, then go back to ordering.
     HOW:
         1. If the cart is empty, print a message and `return`.
-        2. `number = ask_number("Cart line number to remove: ", int, 1)`.
-        3. If `number > len(cart)`, print "No such line." and `return`.
-        4. `cart.pop(number - 1)` removes the line at that position (lists start
-           counting at 0, so we subtract 1).
+        2. Loop with `while True:`. Each time show the cart with show_cart() and
+           the options: 1 Change quantity, 2 Change size / add-ons, 3 Delete
+           item(s), 0 Back.
+        3. Send each choice to its function: change_quantity, change_options,
+           delete_from_cart.
+        4. After an action, if the cart became empty (everything was deleted),
+           print a message and `return`.
+        5. Option 0: `return` to the order page.
     IN THE SYSTEM:
-        Order page option 2. It is for when the customer changes their mind before
-        paying.
+        Order page option 2. It changes the same `cart` list that checkout() uses
+        later, so whatever the customer edits here is exactly what they pay for.
     """
-def remove_from_cart(cart):
+def edit_cart(menu, cart):
     if not cart:
-        print("  Your cart is empty.")
+        print("  Your cart is empty, so there is nothing to edit.")
         return
-    number = ask_number("Cart line number to remove: ", int, 1)
-    if number > len(cart):
-        print("  No such line.")
-        return
-    cart.pop(number - 1)
-    print("  Removed.")
+    while True:
+        show_cart(menu, cart)
+        print("\nEDIT CART")
+        print("1. Change quantity (add or reduce)\n2. Change size / add-ons")
+        print("3. Delete item(s)\n0. Back to ordering")
+        choice = input("Choose: ").strip()
+        if choice == "1":
+            change_quantity(menu, cart)
+        elif choice == "2":
+            change_options(menu, cart)
+        elif choice == "3":
+            delete_from_cart(cart)
+        elif choice == "0":
+            return
+        else:
+            print("  Invalid choice.")
+        if not cart:
+            print("  Your cart is now empty.")
+            return
 
 
     """
@@ -1003,15 +1165,46 @@ def order_page(menu):
     print_grouped_menu(menu)
     while True:
         show_cart(menu, cart)
-        print("\n1. Add item\n2. Remove item\n3. Show menu\n4. Checkout\n0. Cancel order")
+        print("\n1. Add item\n2. Remove item\n3. Edit cart\n4. Search item\n5. Checkout\n0. Cancel order")
         choice = input("Choose: ").strip()
         if choice == "1":
             add_to_cart(menu, cart)
         elif choice == "2":
-            remove_from_cart(cart)
+            delete_from_cart(cart)
         elif choice == "3":
-            print_grouped_menu(menu)
+            edit_cart(menu, cart)
         elif choice == "4":
+            term = ask_text("Search: ").lower()
+            print_items([i for i in menu if term in i["name"].lower()]) 
+        elif choice == "5":
+            if checkout(menu, cart):
+                pause()
+                return
+        elif choice == "0":
+            return main()
+        else:
+            print("  Invalid choice.")
+
+"""This is a modified version of the order_page function
+     that allows customers to search for items by name instead of showing 
+     the whole menu again. It also includes an option to cancel the order and return to the main menu."""
+def orderPage_menu(menu):
+    cart = []
+    title("PLACE AN ORDER")
+    while True:
+        show_cart(menu, cart)
+        print("\n1. Add item\n2. Remove item\n3. Edit cart\n4. Search item\n5. Checkout\n0. Cancel order")
+        choice = input("Choose: ").strip()
+        if choice == "1":
+            add_to_cart(menu, cart)
+        elif choice == "2":
+            delete_from_cart(cart)
+        elif choice == "3":
+            edit_cart(menu, cart)
+        elif choice == "4":
+            term = ask_text("Search: ").lower()
+            print_items([i for i in menu if term in i["name"].lower()])
+        elif choice == "5":
             if checkout(menu, cart):
                 pause()
                 return
@@ -1317,21 +1510,20 @@ def main():
         menu = build_default_menu()
         save_json(MENU_FILE, menu)
     while True:
-        title(SHOP_NAME.upper())
-        print("1. Home\n2. Menu\n3. Order\n4. About us\n5. Contact us")
-        print("6. Menu management (admin)\n0. Exit")
+        title(f"WELCOME TO {SHOP_NAME.upper()}")
+        print("1. Menu\n2. Order\n3. About us\n4. Contact us")
+        print("5. Menu management (admin)\n0. Exit")
         choice = input("Choose: ").strip()
+
         if choice == "1":
-            home_page(menu)
-        elif choice == "2":
             menu_page(menu)
-        elif choice == "3":
+        elif choice == "2":
             order_page(menu)
-        elif choice == "4":
+        elif choice == "3":
             about_page()
-        elif choice == "5":
+        elif choice == "4":
             contact_page()
-        elif choice == "6":
+        elif choice == "5":
             admin_page(menu)
         elif choice == "0":
             print("Goodbye!")
