@@ -2,11 +2,7 @@
 
 Hi! This is our school project: a website for --Newland’s Café--, a school-based coffee shop run by the student baristas of the Sisters of Mary School. Customers can look at the menu and make an order, and the staff can manage the orders, the menu and the stock.
 
-<<<<<<< HEAD
 We made it using only HTML, CSS and JavaScript. No Python, no framework and no database. It was our first time making a whole website with many pages, so We tried to keep the code simple and We added comments in the code so our team can understand it.
-=======
-We made it using only **HTML, CSS and JavaScript**. No Python, no framework and no database. It was our first time making a whole website with many pages, so We tried to keep the code simple and we added comments in the code so our team can understand it.
->>>>>>> refs/remotes/origin/main
 
 
 ## What the system can do
@@ -103,21 +99,13 @@ Everything (menu, stock, orders, messages and My Order) is saved in the browser�
 - No real database, so no sharing of orders between different computers
 - No online payment, it only records the order
 
-<<<<<<< HEAD
 ## What WE learned
 
 AHRON
-=======
-## Team Contributions
-
-## What We learned
-Ahron
->>>>>>> refs/remotes/origin/main
 - Using `localStorage` to save data thru json file, without a real database
 - Making the page with JavaScript (building HTML from data, buttons, pop-up dialogs)
 - Organizing the code, removing repeated code and writing comments
 - Using GitHub to collab with a team
-<<<<<<< HEAD
 
 ROY
 -  
@@ -128,27 +116,13 @@ KIM
 JEN
 -  
 
-=======
-Roy
--
-
-Kim
--
-
-Jen
--
->>>>>>> refs/remotes/origin/main
 
 ## Credits
 
 - Menu and story are from **Newland’s Café** of the **Sisters of Mary School**. Every cup helps a student learn!
 - Group 4 - Team Bossing
-<<<<<<< HEAD
 - Team members: 
     JEN
     ROY
     KIM
     AHRON KHYLE MEDIAVILLO
-=======
-- Team members: *(add the names here)*
->>>>>>> refs/remotes/origin/main
