@@ -15,42 +15,30 @@
   <button class="orderbtn" data-act="drawer">My Order <b id="count">0</b></button>
 </header>
 
-<main class="contact-us">
+<main>
     <!-- LEFT: form -->
-    <section class="contact-form">
-      <h1>Contact us</h1>
-      <p class="intro">
-        Questions, catering, or feedback? Send us a message and we'll reply within a day.
-      </p>
-
-      <form id="contact-form">
-        <label for="name">Your name</label>
-        <input type="text" id="name" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" required>
-
-        <label for="message">Message</label>
-        <textarea id="message" rows="6" required></textarea>
-
-        <button type="submit" class="send-btn">Send message</button>
-      </form>
-    </section>
-
-    <!-- RIGHT: info -->
-    <aside class="contact-info">
-      <h3>Hours</h3>
-      <p>Mon to Sat 7am to 7pm, Sun 8am to 4pm</p>
-
-      <h3>Find us</h3>
-      <p>Sisters of Mary - Adlas, Campus, Brgy. Adlas, Silang, 4118 Cavite</p>
-
-      <h3>Phone</h3>
-      <p>(000) 123-4567</p>
-
-      <h3>Email</h3>
-      <p>hello@newlands.example</p>
-    </aside>
+<section id="contact">
+  <div>
+    <h2>Contact Us</h2>
+    <form id="cform">
+      <label for="cn">Your name</label><input id="cn" required maxlength="40">
+      <label for="ce">Email</label><input id="ce" type="email" required>
+      <label for="cm">Message</label><textarea id="cm" rows="4" required maxlength="400"></textarea>
+      <p><button class="pill gold">Send message</button></p>
+    </form>
+  </div>
+    <div>
+      <h3>
+        Address
+      </h3>
+      <p>Sisters of Mary School - Adlas, Inc. Brgy. Adlas, Silang, Cavite</p>
+      <h3>
+        Opening Hours
+      </h3>
+      <p>Monday to Friday: 4:30 PM - 5:30 PM</p>
+      <p>Saturday to Sunday: 9:00 AM - 5:30 pm</p>
+    </div>
+  </section>
   </main>
 
 </main>

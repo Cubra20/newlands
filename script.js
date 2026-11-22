@@ -228,11 +228,6 @@ function initHome() {
   const solidNav = () => $('#nav').classList.toggle('solid', scrollY > 40);
   addEventListener('scroll', solidNav, {passive: true}); solidNav();
 }
-function renderStatsH() {
-  const sales = S.orders.reduce((s, o) => s + o.total, 0), pend = S.orders.filter(o => o.status === 'Pending').length;
-  $('#stats2').innerHTML = `<div><b>${S.orders.length}</b>orders</div><div><b>${peso(sales)}</b>sales</div><div><b>${pend}</b>pending</div>`;
-  $('#tc-orders2').textContent = pend || ''; $('#tc-msgs').textContent = S.msgs.length || '';
-}
 
 /* ==========================================================================
    3. MENU PAGE (menu.html)
