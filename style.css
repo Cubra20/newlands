@@ -3,7 +3,7 @@
    Each section ends with its own phone-size rules (@media max-width:760px). */
 
 /* ==========================================================================
-   1. BASE (every page)
+   - BASE (every page)
    Colors and fonts are CSS variables in :root: change the theme there.
    ========================================================================== */
 :root{
@@ -14,8 +14,6 @@
     --dark:#4a2808;
     --or:#ff6a13;
     --ink:#2b1a10;
-    --black:#000000;
-    --white: #ffffff;
     --line:#c4b8a5;
     --warn:#a63a2a;
     --serif:"Instrument Serif",Georgia,serif;
@@ -57,7 +55,7 @@ small{
 }
 
 /* ==========================================================================
-   2. SHARED: top bar (nav)
+   - SHARED: top bar (nav)
    On Home it is see-through over the photo; other pages use .solid (added in the HTML, or by script.js after scrolling).
    ========================================================================== */
 .nav{
@@ -70,10 +68,12 @@ small{
     gap:1rem;
     padding:.6rem 2rem;
     color:#fff;
-    background:rgba(60,35,15,.3);
+    background:rgba(148, 83, 30, 0.63);
     backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(255,255,255,.25);
     transition:background .3s;
+    margin: 15px;
+    border-radius:30px;
 }
 .nav.solid{
     background:var(--dark);
@@ -89,6 +89,9 @@ small{
 .brand img{
     height:46px;
     border-radius:8px;
+}
+.brand img:hover{
+    transform:scale(1.25);
 }
 .links{
     display:flex;
@@ -142,7 +145,7 @@ small{
 }
 
 /* ==========================================================================
-   3. SHARED: buttons and small text
+   - SHARED: buttons and small text
    .pill = big rounded button, .ghost = small outline button.
    ========================================================================== */
 .eyebrow{
@@ -168,6 +171,9 @@ small{
     background:var(--dark);
     border-color:var(--dark);
 }
+.pill.dark:hover{
+    transform:scale(1.05);
+}
 .pill.gold{
     background:var(--gold);
     border-color:var(--gold);
@@ -179,6 +185,11 @@ small{
     border-color:var(--brown);
     color:var(--brown);
     font-family:var(--mono);
+}
+.pill.out:hover{
+    background:var(--brown);
+    color:#fff;
+    transform:scale(1.05);
 }
 .pill.wide{
     width:100%;
@@ -192,7 +203,7 @@ small{
 }
 
 /* ==========================================================================
-   4. SHARED: forms and dialogs (pop-ups)
+   - SHARED: forms and dialogs (pop-ups)
    Used by the Menu size/add-ons dialog, the Manage modal, the My Order drawer and the Contact form.
    ========================================================================== */
 label{
@@ -246,20 +257,35 @@ dialog::backdrop{
     position:relative;
     display:flex;
 }
-.search input{
-    max-width:420px;
-    padding:.7rem 1.2rem;
-    border:1px solid var(--brown);
-    border-radius:99px;
-    background:var(--paper);
-    font-family:var(--mono);
+.container-input {
+  position: relative;
 }
-.search input::placeholder{
-    color:#6b5a4a;
+.input {
+  width: 150px;
+  padding: 10px 15px 10px 40px;
+  border-radius: 90px;
+  border: solid 1px #9e4c08;
+  transition: all .2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+}
+
+.container-input svg {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translate(0, -50%);
+}
+
+.input:focus {
+  opacity:1;
+  width: 350px;
+  border-color: #c25a04;
+  box-shadow: 0 0px 9px rgba(194, 104, 30, 0.541);
 }
 
 /* ==========================================================================
-   5. SHARED: My Order drawer (added by script.js on every page)
+   - SHARED: My Order drawer (added by script.js on every page)
    ========================================================================== */
 #scrim{
     position:fixed;
@@ -277,11 +303,13 @@ dialog::backdrop{
     z-index:50;
     height:100%;
     width:min(380px,100%);
-    background:var(--paper);
+    background:linear-gradient(to bottom, rgba(182, 128, 12, 0.95), rgba(255, 255, 255, 0.85));
     padding:1.2rem;
     overflow-y:auto;
     transform:translateX(105%);
     transition:transform .35s ease;
+    margin:10px;
+    border-radius:24px 0 0 24px;
 }
 .drawer-open #scrim{
     opacity:1;
@@ -298,7 +326,7 @@ dialog::backdrop{
 }
 .dh h3{
     font-size:1.9rem;
-    color:var(--brown);
+    color:white;
 }
 .line{
     display:flex;
@@ -331,14 +359,17 @@ dialog::backdrop{
 }
 
 /* ==========================================================================
-   6. SHARED: message box (toast) and footer
+   - SHARED: message box (toast) and footer
    ========================================================================== */
 #toast{
     position:fixed;
     left:50%;
-    bottom:1.2rem;
+    top:15%;
     transform:translateX(-50%);
-    background:var(--dark);
+    background:rgba(150, 72, 8, 0.808);
+    border:1px solid rgba(196, 136, 58, 0.562);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.678);
+    backdrop-filter:blur(10px);
     color:#fff;
     padding:.6rem 1.2rem;
     border-radius:99px;
@@ -354,86 +385,48 @@ dialog::backdrop{
 .sitefoot a{
     color:inherit;
 }
-
-/* ==========================================================================
-   7. HOME PAGE (index.html)
-   The hero uses images/hero.jpg.jpg; the colored layer on top keeps the text readable.
+/*==========================================================================
+   6. SHARED: Loader and Page animation
    ========================================================================== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-   .hero {
-  min-height: 100vh;
-  padding: 140px 80px 40px;
-  color: white;
-
-  background:
-    linear-gradient(90deg, rgba(255, 106, 19, 0.6), transparent 60%),
-    url("images/hero.jpg.jpg");
-  background-size: cover;       /* fill the whole section */
-  background-position: center;  /* keep the middle of the photo visible */
-  background-repeat: no-repeat; /* don't tile the image */
-}
-.coffee {
-  font-size: 15vh;
-  color: var(--or);
-  line-height: 1;
-  margin: 0.5rem 0;
-}
-.coffee2 {
-  font-size: 15vh;
-  color: var(--white);
-  line-height: 1;
-  margin: 0.5rem 0;
-}
-.description {
-  font-size: 3vh;
-  max-width: 70%;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  text-align: justify;
-  font-family: var(--serif);
-}
-.specialty {
-  font-size: 2vh;
-  color: var(--white);
-  margin-bottom: 2rem;
+/*Page animation*/
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.btn {
-  min-height: 20%;          /* 7% of the window height */
-  padding: 2vh;       /* left/right space, also based on height */
-  font-size: 2vh;  
-  color: var(--white);
-  background: rgba(57, 56, 55, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 999px;          /* pill shape */
-  backdrop-filter: blur(6px);
-  cursor: pointer;
-  transition: background 0.2s;
-  text-decoration: none;               /* remove underline for links */
+@keyframes ScaleIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(5);
+  }
 }
-.mstats2{
-    display:flex;
-    gap: 6vh;
-    flex-wrap:wrap;
-    margin:1rem 0 1.5rem;
-    font-family:var(--mono);
-    font-size: 4vh;
-    margin-top: 80px;
-}
-.mstats2 b{
-    display:block;
-    font:6vh/1 var(--serif);
-    color:var(--white);
-}
+/* ==========================================================================
+   - SHARED: Scroll-to-top button
+   ========================================================================== */
 
 /* ==========================================================================
-   8. MENU PAGE (menu.html)
+   - HOME PAGE (index.html)
+   Use images/hero.jpg.jpg; the colored layer on top keeps the text readable.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   - MENU PAGE (menu.html)
    Carousel of tall picture cards, then the category bar.
    ========================================================================== */
 #menu{
     position:relative;
     overflow:hidden;
     padding:8rem 0 0;
+    animation: fadeSlideIn 0.8s ease-in-out forwards;
 }
 #menu::before{
     content:"";
@@ -477,6 +470,10 @@ dialog::backdrop{
     font-size:1.2rem;
     cursor:pointer;
 }
+.arr:hover{
+    background:var(--gold);
+    color:var(--dark);
+}
 .track{
     flex:1;
     display:flex;
@@ -514,6 +511,9 @@ dialog::backdrop{
     transform:scale(.5);
     transition:all .5s cubic-bezier(0.16,1,0.3,1);
 }
+.card>img:hover{
+    transform:scale(1.2);
+}
 .badge{
     position:absolute;
     top:.8rem;
@@ -529,7 +529,7 @@ dialog::backdrop{
     inset:auto 0 0;
     padding:.7rem 3rem .8rem .9rem;
     color:#fff;
-    background:rgba(45,28,16,.55);
+    background:rgba(129, 56, 4, 0.55);
     backdrop-filter:blur(8px);
 }
 .glass small{
@@ -601,6 +601,9 @@ dialog::backdrop{
     text-decoration:underline;
     text-underline-offset:6px;
 }
+.cats button:hover{
+    color:var(--brown);
+}
 
 /* Card hover and press effects */
 .card:hover{
@@ -615,7 +618,6 @@ dialog::backdrop{
 .card:active{
     transform:translateY(-5px) scale(0.98);
 }
-
 /* phone size */
 @media(max-width:760px){
     .mhead{
@@ -631,162 +633,18 @@ dialog::backdrop{
 }
 
 /* ==========================================================================
-   9. STORY PAGE (story.html)
-   The story uses images/story.jpg.jpg with a dark layer on top.
+   - STORY PAGE (story.html)
+   Use images/story.jpg.jpg with a dark layer on top.
    ========================================================================== */
-#story{
-    min-height:90vh;
-    padding:7rem 6vw;
-    color:#fff;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    background:linear-gradient(rgba(25,15,8,.6),rgba(25,15,8,.6)), url(images/story.jpg.jpg) center/cover,#3a2412;
-}
-#story .text{
-    max-width:100%;
-    font:clamp(1.15rem,2.2vw,1.6rem)/1.35 var(--serif);
-    text-align:justify;
-}
-#story .text p{
-    margin:0 0 .8rem;
-}
 
-/* phone size */
-@media(max-width:760px){
-    #story{
-        padding:6rem 1.2rem;
-    }
-}
 
 /* ==========================================================================
-   10. CONTACT PAGE (contact.html)
+   - CONTACT PAGE (contact.html)
    ========================================================================== */
-#contact{
-    background:var(--dark);
-    color:#fff;
-    min-height:100vh;
-    padding:8rem 6vw 3rem;
-}
-#contact h2{
-    font-size:2.8rem;
-    margin-bottom:1.5rem;
-}
-#contact .detail{
-    display:flex;
-    flex-wrap:wrap;
-    gap:5rem;
-}
-#contact form{
-    width:100%;
-    max-width:800px;
-}
-#contact input,#contact textarea{
-    background:rgba(255,255,255,.08);
-    border-color:rgba(255,255,255,.35);
-    color:#fff;
-}
-#contact input:focus,#contact textarea:focus{
-    background:rgba(255,255,255,.15);
-    border-color:rgba(255,255,255,.55);
-    color:#fff;
-}
 
 
-body {
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: var(--brown);
-  color: var(--black);
-}
-
-/* ---------- Two-column layout ---------- */
-.contact-us {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 150px;
-  padding: 60px 25px;
-  color: var(--white);
-}
-
-/* ---------- Left side ---------- */
-.contact-form h1 { 
-    font-size: 36px; 
-    margin-bottom: 14px; 
-    font-size: 4vh;
-    margin-top: 2.5vh;
-    color: var(--white);
-}
-
-.intro { 
-    font-size: 2vh;
-    color: var(--white); 
-    line-height: 1.7; 
-    margin-bottom: 24px; }
-
-form label {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-form input,
-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 18px;
-  background: white;
-  border: 1px solid var(--white);
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 16px;
-}
-
-form textarea { resize: vertical; }
-
-form input:focus,
-form textarea:focus {
-  outline: 2px solid var(--or);
-  border-color: transparent;
-}
-
-.send-btn {
-  padding: 2vh 2vh;
-  background: var(--dark);
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.send-btn:hover { opacity: 0.85; }
-
-/* ---------- Right side ---------- */
-.contact-info h3 { 
-    font-size: 16px; 
-    margin-bottom: 6px; 
-    margin-top: 5vh;
-}
-
-.contact-info p {
-  color: var(--white);
-  line-height: 1.7;
-  margin-bottom: 22px;
-}
-
-/* ---------- Small screens: one column ---------- */
-@media (max-width: 800px) {
-  .contact-us {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 40px 20px;
-  }
-}
 /* ==========================================================================
-   11. MANAGE PAGE (manage.html)
+   - MANAGE PAGE (manage.html)
    Order: PIN screen, page frame, number stats, tabs, orders, table, item modal preview.
    ========================================================================== */
 
@@ -804,6 +662,7 @@ form textarea:focus {
     padding:2rem;
     width:min(400px,100%);
     text-align:center;
+    box-shadow: inset 0 10px 10px 1px rgba(139,94,75,.3), 0 8px 20px rgba(60,35,15,.25);
 }
 .gatecard h2{
     font-size:2.8rem;
@@ -831,6 +690,7 @@ form textarea:focus {
     background:var(--sand);
     min-height:100vh;
     padding-top:6rem;
+    animation: fadeSlideIn 0.8s ease-in-out forwards;
 }
 .mwrap{
     max-width:1100px;
@@ -880,6 +740,11 @@ form textarea:focus {
     border-color:var(--dark);
     color:#fff;
 }
+.mtabs button:hover{
+    background:var(--brown);
+    color:#fff;
+    transform:scale(1.05);
+}
 .mtabs b{
     background:var(--gold);
     color:var(--dark);
@@ -901,6 +766,7 @@ form textarea:focus {
     border-radius:18px;
     padding:.9rem 1.1rem;
     margin-bottom:.7rem;
+    animation: fadeSlideIn 0.8s ease-in-out forwards;
 }
 .order-top{
     display:flex;
@@ -928,6 +794,7 @@ table{
     width:100%;
     border-collapse:collapse;
     margin:1rem 0;
+    animation: fadeSlideIn 0.8s ease-in-out forwards;
 }
 th,td{
     padding:.45rem;
@@ -938,9 +805,6 @@ th,td{
 th{
     font:500 .85rem var(--mono);
     color:#6b5a4a;
-}
-td input{
-    width:5.5rem;
 }
 .th{
     width:46px;
