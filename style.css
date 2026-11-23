@@ -149,7 +149,7 @@ small{
    .pill = big rounded button, .ghost = small outline button.
    ========================================================================== */
 .eyebrow{
-    font:2.5rem var(--mono);
+    font:100 var(--mono);
     letter-spacing:.06em;
     text-transform:uppercase;
     margin:0 0 .6rem;
@@ -166,6 +166,12 @@ small{
     padding:.75rem 1.6rem;
     cursor:pointer;
     text-decoration:none;
+}
+.pill:hover{
+    background:var(--gold);
+    color:var(--dark);
+    font-size:1.05rem;
+    transform:scale(1.05);
 }
 .pill.dark{
     background:var(--dark);
@@ -420,13 +426,17 @@ dialog::backdrop{
     position:relative;
     padding:8rem 2rem 3rem 6vw;
     color:#fff;
-    display:flex;
-    flex-direction:column;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    grid-gap:2rem;
     align-items:flex-start;
     justify-content:center;
     background:linear-gradient(90deg,rgba(226,128,36,.92),rgba(150,80,30,.55) 45%,rgba(30,18,10,.25)), url(images/hero.jpg.jpg) center/cover,#5a3414;
     min-height:100vh;
     animation: fadeSlideIn 0.8s ease-in-out forwards;
+}
+.hero-content{
+    max-width:90rem;
 }
 .hero h1{
     font-size:clamp(3.8rem,11vw,8rem);
@@ -455,6 +465,75 @@ dialog::backdrop{
     font-size:2.6rem;
     line-height:1;
 }
+
+.bestItem{
+  width: 390px;
+  height: 554px;
+  margin:auto;
+  background: transparent;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow:
+    inset 0px 56px 40px #2224,
+    inset 0px -56px 40px #c27a1cc7,
+    1px 1px 2px #c27a1cc7,
+    -1px -1px 2px #4442;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300%;
+  height: 100%;
+  transform: translateX(0%);
+  animation: anim 10s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.item {
+  width: 50%;
+  text-align: center;
+  color: #333;
+  font-size: 30px;
+  font-weight: 600;
+  text-shadow: 9px 8px 3px #4443;
+}
+
+.bestItem h3{
+    color:white;
+}
+
+.img1{
+    filter: drop-shadow(1px 1px  20px rgba(218, 241, 8, 0.863));
+}
+.img2{
+    filter: drop-shadow(1px 1px 20px rgba(241, 74, 8, 0.89));
+}
+.img3{
+    filter: drop-shadow(1px 1px 20px rgb(180, 83, 3));
+}
+@keyframes anim {
+  0% {
+    transform: translateX(0%);
+  }
+  20% {
+    transform: translateX(0%);
+  }
+  30% {
+    transform: translateX(-33.33%);
+  }
+  70% {
+    transform: translateX(-33.33%);
+  }
+  80% {
+    transform: translateX(-66.66%);
+  }
+  100% {
+    transform: translateX(-66.66%);
+  }
+}
+
 
 /* phone size */
 @media(max-width:760px){
@@ -715,6 +794,11 @@ dialog::backdrop{
     color:#fff;
     min-height:100vh;
     padding:8rem 6vw 3rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    grid-gap:2rem;
+    align-items:flex-start;
+    justify-content:center;
     animation: fadeSlideIn 0.8s ease-in-out forwards;
 }
 #contact h2{

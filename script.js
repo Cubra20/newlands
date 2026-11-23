@@ -221,6 +221,7 @@ function renderHero() {
   $('#hstats').innerHTML = `<div><b>${drinks}</b>Drinks on the menu</div><div><b>${meals}</b>Meals on the menu</div><div><b>${served}</b>Orders served</div>`;
 }
 
+
 /* TASK: Make the top bar see-through over the hero picture, and solid brown after the user scrolls down.
    HOW: Add the class "solid" when scrollY is more than 40 (the CSS does the color). We run it once at the start and again on every scroll.
    IN THE SYSTEM: only for the Home page. The other pages already have the class "solid" in their HTML. */
