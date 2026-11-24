@@ -824,7 +824,13 @@ dialog::backdrop{
     border-color:rgba(255,255,255,.55);
     color:#fff;
 }
-
+.contact_uss{
+    font-size: 3.5vh;
+    font-weight: bold;
+}
+.contact_content{
+    font-size: 2vh;
+}
 
 /* ==========================================================================
    - MANAGE PAGE (manage.html)

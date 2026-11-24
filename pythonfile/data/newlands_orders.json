@@ -1,0 +1,24 @@
+[
+  {
+    "order_no": 1,
+    "date": "2026-11-24 10:46",
+    "customer": "AAA",
+    "items": [
+      {
+        "name": "Hotsilog",
+        "label": "Hotsilog",
+        "qty": 1,
+        "price": 139.0
+      },
+      {
+        "name": "Latte",
+        "label": "Latte (12oz) + Espresso",
+        "qty": 1,
+        "price": 140.0
+      }
+    ],
+    "total": 279.0,
+    "paid": 300.0,
+    "change": 21.0
+  }
+]
