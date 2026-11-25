@@ -89,6 +89,7 @@ small{
 .brand img{
     height:46px;
     border-radius:8px;
+    transition:all .5s cubic-bezier(0.16,1,0.3,1);
 }
 .brand img:hover{
     transform:scale(1.25);
@@ -166,6 +167,7 @@ small{
     padding:.75rem 1.6rem;
     cursor:pointer;
     text-decoration:none;
+    transition:all .5s cubic-bezier(0.16,1,0.3,1);
 }
 .pill:hover{
     background:var(--gold);
@@ -176,9 +178,11 @@ small{
 .pill.dark{
     background:var(--dark);
     border-color:var(--dark);
+    transition:all .5s cubic-bezier(0.16,1,0.3,1);
 }
 .pill.dark:hover{
     transform:scale(1.05);
+    color: white;
 }
 .pill.gold{
     background:var(--gold);
@@ -206,6 +210,12 @@ small{
     border-radius:99px;
     padding:.35rem .9rem;
     cursor:pointer;
+    transition:all .5s cubic-bezier(0.16,1,0.3,1);
+}
+.ghost:hover{
+    background:var(--gold);
+    color:var(--dark);
+    transform:scale(1.05);
 }
 
 /* ==========================================================================
@@ -431,8 +441,9 @@ dialog::backdrop{
     grid-gap:2rem;
     align-items:flex-start;
     justify-content:center;
+    align-content: center;
     background:linear-gradient(90deg,rgba(226,128,36,.92),rgba(150,80,30,.55) 45%,rgba(30,18,10,.25)), url(images/hero.jpg.jpg) center/cover,#5a3414;
-    min-height:100vh;
+    min-height:95vh;
     animation: fadeSlideIn 0.8s ease-in-out forwards;
 }
 .hero-content{
@@ -470,9 +481,9 @@ dialog::backdrop{
   width: 390px;
   height: 554px;
   margin:auto;
-  background: transparent;
   overflow: hidden;
   border-radius: 20px;
+  background: transparent;
   box-shadow:
     inset 0px 56px 40px #2224,
     inset 0px -56px 40px #c27a1cc7,
@@ -490,6 +501,9 @@ dialog::backdrop{
   transform: translateX(0%);
   animation: anim 10s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+.bestItem h3{
+    color:white;
+}
 
 .item {
   width: 50%;
@@ -500,8 +514,9 @@ dialog::backdrop{
   text-shadow: 9px 8px 3px #4443;
 }
 
-.bestItem h3{
-    color:white;
+.bestItem img:hover{
+    transform: scale(1.1);
+    transition: all 0.5s ease-in-out;
 }
 
 .img1{
@@ -547,9 +562,11 @@ dialog::backdrop{
    Carousel of tall picture cards, then the category bar.
    ========================================================================== */
 #menu{
+    min-height: 95vh;
     position:relative;
     overflow:hidden;
     padding:8rem 0 0;
+    align-content: center;
     animation: fadeSlideIn 0.8s ease-in-out forwards;
 }
 #menu::before{
@@ -761,35 +778,32 @@ dialog::backdrop{
    Use images/story.jpg.jpg with a dark layer on top.
    ========================================================================== */
 #story{
-    min-height:90vh;
+    min-height:95vh;
     padding:7rem 6vw;
     color:#fff;
     display:flex;
     flex-direction:column;
     justify-content:center;
-    background:linear-gradient(rgba(25,15,8,.6),rgba(25,15,8,.6)), url(images/story.jpg.jpg) center/cover,#3a2412;
-}
-
-.story-title {
-  margin: 0 0 80px -0;
-  font-family:var(--serif);
-  font-size: 40px;
-  font-weight: normal;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #d4a359;
-}
-.story-content {
     align-content: center;
-  max-width: 70%;
-  max-height: 100%;
-  font:var(--serif);
-  margin: left 20px;
+    background:linear-gradient(rgba(25,15,8,.6),rgba(25,15,8,.6)), url(images/story.jpg.jpg) center/cover,#3a2412;
+    animation: fadeSlideIn 0.8s ease-in-out forwards;
 }
-.content{
-font-size: xx-large;
+#story .text{
+    max-width:100%;
+    font:clamp(1.15rem,2.2vw,1.6rem)/1.35 var(--serif);
+    text-align:justify;
+}
+#story .text p{
+    margin:0 0 .8rem;
+    font-size: 4vh;
 }
 
+/* phone size */
+@media(max-width:760px){
+    #story{
+        padding:6rem 1.2rem;
+    }
+}
 
 
 
@@ -800,12 +814,12 @@ font-size: xx-large;
 #contact{
     background:var(--dark);
     color:#fff;
-    min-height:100vh;
+    min-height:95vh;
     padding:8rem 6vw 3rem;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     grid-gap:2rem;
-    align-items:flex-start;
+    align-items:center;
     justify-content:center;
     animation: fadeSlideIn 0.8s ease-in-out forwards;
 }
