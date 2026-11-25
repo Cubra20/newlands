@@ -293,13 +293,19 @@ dialog::backdrop{
   transform: translate(0, -50%);
 }
 
-.input:focus {
+.input:hover {
   opacity:1;
   width: 350px;
   border-color: #c25a04;
   box-shadow: 0 0px 9px rgba(194, 104, 30, 0.541);
 }
 
+.input:focus {
+  opacity:1;
+  width: 350px;
+  border-color: #c25a04;
+  box-shadow: 0 0px 9px rgba(194, 104, 30, 0.541);
+}
 /* ==========================================================================
    - SHARED: My Order drawer (added by script.js on every page)
    ========================================================================== */
