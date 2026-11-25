@@ -483,6 +483,7 @@ Object.assign(acts, {
   edit: b => openModal('Edit menu item', 'Save changes', item(+b.dataset.id)),
   closen: () => $('#ndlg').close(),
   del: b => { const it = item(+b.dataset.id); if (!confirm('Remove ' + it.name + ' from the menu?')) return; S.items = S.items.filter(i => i !== it); cart = cart.filter(l => l.id !== it.id); commit(); toast('Item removed'); },
+  reset: () => { if (!confirm('Delete all orders, messages and stock changes?')) return; S = seed(); cart = []; commit(); toast('Data reset to default'); }
 });
 
 /* TASK: Decide if the Manage page can open. 
