@@ -929,6 +929,12 @@ dialog::backdrop{
     font:2.6rem/1 var(--serif);
     color:var(--dark);
 }
+#tab-menu > p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 .mtabs{
     display:flex;
     gap:.5rem;
